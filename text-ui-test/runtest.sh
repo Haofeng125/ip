@@ -12,8 +12,8 @@ then
     rm ACTUAL.TXT
 fi
 
-# compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
+# MINIMUM CHANGE: Added ../src/main/java/tasks/*.java and ../src/main/java/exceptions/*.java
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java ../src/main/java/tasks/*.java ../src/main/java/exceptions/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
@@ -24,6 +24,7 @@ java -classpath ../bin James < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
+# Use dos2unix on both to ensure line endings match perfectly
 dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
 # compare the output to the expected output

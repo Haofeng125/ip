@@ -8,19 +8,29 @@
   Now you have 1 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
+  the description of a todo can not be EMPTY, bro!
+  ____________________________________________________________
+  ____________________________________________________________
   Say less bro, I've added this task for you:
     [D][ ] return book (by: Sunday)
   Now you have 2 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
-  Here you go bro! Here's your list.
-  1.[T][ ] borrow book
-  2.[D][ ] return book (by: Sunday)
+  Bro, deadlines need a '/by' time! Use: deadline [desc] /by [time]
   ____________________________________________________________
   ____________________________________________________________
   Say less bro, I've added this task for you:
     [E][ ] project meeting (from: Mon 2pm to 4pm)
   Now you have 3 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  Nah man, events need '/from' and '/to'! Use: event [desc] /from [s] /to [e]
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][ ] borrow book
+  2.[D][ ] return book (by: Sunday)
+  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   No problem man! I've marked this task as done:
@@ -33,16 +43,26 @@
   3.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
-  Say less bro, I've added this task for you:
-    [D][ ] do homework (by: no idea :-p)
-  Now you have 4 tasks in your list!
+  Chill, that's not a number! Use something like 'mark 1'.
+  ____________________________________________________________
+  ____________________________________________________________
+  that task number doesn't exist!
+  ____________________________________________________________
+  ____________________________________________________________
+  I got you bro! I've marked this task as not done yet:
+    [T][ ] borrow book
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][X] borrow book
+  1.[T][ ] borrow book
   2.[D][ ] return book (by: Sunday)
   3.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  4.[D][ ] do homework (by: no idea :-p)
+  ____________________________________________________________
+  ____________________________________________________________
+  you need to tell me which number to unmark!
+  ____________________________________________________________
+  ____________________________________________________________
+  I don't know what 'hello' means man!
   ____________________________________________________________
   ____________________________________________________________
   You take care bro. Hope to see you again soon!
