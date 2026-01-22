@@ -1,7 +1,49 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
+  ____________________________________________________________
+  Wassup! This is James.
+  What can I do for you?
+  ____________________________________________________________
+  ____________________________________________________________
+  Say less bro, I've added this task for you:
+    [T][ ] borrow book
+  Now you have 1 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  Say less bro, I've added this task for you:
+    [D][ ] return book (by: Sunday)
+  Now you have 2 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][ ] borrow book
+  2.[D][ ] return book (by: Sunday)
+  ____________________________________________________________
+  ____________________________________________________________
+  Say less bro, I've added this task for you:
+    [E][ ] project meeting (from: Mon 2pm to 4pm)
+  Now you have 3 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  No problem man! I've marked this task as done:
+    [T][X] borrow book
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][X] borrow book
+  2.[D][ ] return book (by: Sunday)
+  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
+  ____________________________________________________________
+  ____________________________________________________________
+  Say less bro, I've added this task for you:
+    [D][ ] do homework (by: no idea :-p)
+  Now you have 4 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][X] borrow book
+  2.[D][ ] return book (by: Sunday)
+  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
+  4.[D][ ] do homework (by: no idea :-p)
+  ____________________________________________________________
+  ____________________________________________________________
+  You take care bro. Hope to see you again soon!
+  ____________________________________________________________
