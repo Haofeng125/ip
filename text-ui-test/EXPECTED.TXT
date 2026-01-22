@@ -3,7 +3,7 @@
   What can I do for you?
   ____________________________________________________________
   ____________________________________________________________
-  Say less bro, I've added this task for you:
+  Say less bro. I've added this task for you:
     [T][ ] borrow book
   Now you have 1 tasks in your list!
   ____________________________________________________________
@@ -11,7 +11,7 @@
   the description of a todo can not be EMPTY, bro!
   ____________________________________________________________
   ____________________________________________________________
-  Say less bro, I've added this task for you:
+  Say less bro. I've added this task for you:
     [D][ ] return book (by: Sunday)
   Now you have 2 tasks in your list!
   ____________________________________________________________
@@ -19,7 +19,7 @@
   Bro, deadlines need a '/by' time! Use: deadline [desc] /by [time]
   ____________________________________________________________
   ____________________________________________________________
-  Say less bro, I've added this task for you:
+  Say less bro. I've added this task for you:
     [E][ ] project meeting (from: Mon 2pm to 4pm)
   Now you have 3 tasks in your list!
   ____________________________________________________________
@@ -37,10 +37,14 @@
     [T][X] borrow book
   ____________________________________________________________
   ____________________________________________________________
+  No problem man! I've marked this task as done:
+    [E][X] project meeting (from: Mon 2pm to 4pm)
+  ____________________________________________________________
+  ____________________________________________________________
   Here you go bro! Here's your list.
   1.[T][X] borrow book
   2.[D][ ] return book (by: Sunday)
-  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
+  3.[E][X] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   Chill, that's not a number! Use something like 'mark 1'.
@@ -56,13 +60,36 @@
   Here you go bro! Here's your list.
   1.[T][ ] borrow book
   2.[D][ ] return book (by: Sunday)
-  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
+  3.[E][X] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   you need to tell me which number to unmark!
   ____________________________________________________________
   ____________________________________________________________
-  I don't know what 'hello' means man!
+  I don't know what 'hello how are you?' means man!
+  ____________________________________________________________
+  ____________________________________________________________
+  Say less bro. I've added this task for you:
+    [D][ ] return book (by: Actually I also don't know o.O)
+  Now you have 4 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][ ] borrow book
+  2.[D][ ] return book (by: Sunday)
+  3.[E][X] project meeting (from: Mon 2pm to 4pm)
+  4.[D][ ] return book (by: Actually I also don't know o.O)
+  ____________________________________________________________
+  ____________________________________________________________
+  You bet dawg. I have removed this task for you:
+    [D][ ] return book (by: Sunday)
+  Now you have 3 tasks in your list!
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][ ] borrow book
+  2.[E][X] project meeting (from: Mon 2pm to 4pm)
+  3.[D][ ] return book (by: Actually I also don't know o.O)
   ____________________________________________________________
   ____________________________________________________________
   You take care bro. Hope to see you again soon!

@@ -37,8 +37,10 @@ public class James {
                     taskList.printTasks();
                 } else if (command.equals("mark") || command.equals("unmark")) {
                     handleMarking(command, words, taskList);
+                } else if (command.equals("delete")) {
+                    handleDeletion(command, words, taskList);
                 } else {
-                    handleTaskCreation(command, words, taskList);
+                    handleTaskCreation(command, words, taskList, input);
                 }
             } catch (JamesException e) {
                 System.out.println("  " + e.getMessage());
@@ -71,9 +73,9 @@ public class James {
         taskList.printTask(taskNumber);
     }
 
-    private static void handleTaskCreation(String command, String[] words, TaskList taskList) throws JamesException {
+    private static void handleTaskCreation(String command, String[] words, TaskList taskList, String input) throws JamesException {
         if (!command.equals("todo") && !command.equals("deadline") && !command.equals("event")) {
-            throw new UnknownCommandException(command);
+            throw new UnknownCommandException(input);
         }
 
         if (words.length < 2 || words[1].trim().isEmpty()) {
@@ -102,9 +104,23 @@ public class James {
 
         if (task != null) {
             taskList.addTask(task);
-            System.out.println("  Say less bro, I've added this task for you:");
+            System.out.println("  Say less bro. I've added this task for you:");
             taskList.printTask(taskList.getSize());
             System.out.println("  Now you have " + taskList.getSize() + " tasks in your list!");
         }
+    }
+
+    private static void handleDeletion(String command, String[] words, TaskList taskList) throws JamesException {
+        if (words.length < 2) {
+            throw new JamesException("you need to tell me which number to " + command + "!");
+        }
+        int taskNumber = Integer.parseInt(words[1]);
+        if (taskNumber <= 0 || taskNumber > taskList.getSize()) {
+            throw new JamesException("that task number doesn't exist!");
+        }
+        System.out.println("  You bet dawg. I have removed this task for you:");
+        taskList.printTask(taskNumber);
+        taskList.removeTask(taskNumber);
+        System.out.println("  Now you have " + taskList.getSize() + " tasks in your list!");
     }
 }

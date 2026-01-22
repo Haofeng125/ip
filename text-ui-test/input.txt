@@ -6,6 +6,7 @@ event project meeting /from Mon 2pm /to 4pm
 event project meeting /from Mon 2pm
 list
 mark 1
+mark 3
 list
 mark abc
 mark 100
@@ -13,4 +14,8 @@ unmark 1
 list
 unmark
 hello how are you?
+deadline return book /by Actually I also don't know o.O
+list
+delete 2
+list
 bye

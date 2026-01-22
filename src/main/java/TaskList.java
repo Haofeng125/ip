@@ -52,4 +52,9 @@ public class TaskList {
         Task task = getTask(taskNumber);
         System.out.println("    " + task.toString());
     }
+
+    public void removeTask(int taskNumber) {
+        int index = taskNumber - 1;
+        this.tasks.remove(index);
+    }
 }
