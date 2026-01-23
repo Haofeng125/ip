@@ -1,21 +1,25 @@
-todo borrow book
-todo
+todo read book
+hey what's up
 deadline return book /by Sunday
-deadline return book
 event project meeting /from Mon 2pm /to 4pm
-event project meeting /from Mon 2pm
 list
 mark 1
 mark 3
 list
-mark abc
-mark 100
 unmark 1
 list
-unmark
-hello how are you?
-deadline return book /by Actually I also don't know o.O
+todo
+deadline return book
+event project meeting /from Mon 2pm
+event party /to midnight
+mark
+mark abc
+mark 100
+delete
+delete 0
+delete 5
 list
-delete 2
+unknownCommand
+   todo   trimmed task
 list
 bye

@@ -4,11 +4,11 @@
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [T][ ] borrow book
+    [T][ ] read book
   Now you have 1 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
-  the description of a todo can not be EMPTY, bro!
+  I don't know what 'hey what's up' means man!
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
@@ -16,25 +16,19 @@
   Now you have 2 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
-  Bro, deadlines need a '/by' time! Use: deadline [desc] /by [time]
-  ____________________________________________________________
-  ____________________________________________________________
   Say less bro. I've added this task for you:
     [E][ ] project meeting (from: Mon 2pm to 4pm)
   Now you have 3 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
-  Nah man, events need '/from' and '/to'! Use: event [desc] /from [s] /to [e]
-  ____________________________________________________________
-  ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] borrow book
+  1.[T][ ] read book
   2.[D][ ] return book (by: Sunday)
   3.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   No problem man! I've marked this task as done:
-    [T][X] borrow book
+    [T][X] read book
   ____________________________________________________________
   ____________________________________________________________
   No problem man! I've marked this task as done:
@@ -42,9 +36,34 @@
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][X] borrow book
+  1.[T][X] read book
   2.[D][ ] return book (by: Sunday)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
+  ____________________________________________________________
+  ____________________________________________________________
+  I got you bro! I've marked this task as not done yet:
+    [T][ ] read book
+  ____________________________________________________________
+  ____________________________________________________________
+  Here you go bro! Here's your list.
+  1.[T][ ] read book
+  2.[D][ ] return book (by: Sunday)
+  3.[E][X] project meeting (from: Mon 2pm to 4pm)
+  ____________________________________________________________
+  ____________________________________________________________
+  the description of a todo can not be EMPTY, bro!
+  ____________________________________________________________
+  ____________________________________________________________
+  Bro, deadlines need a '/by' time! Use: deadline [desc] /by [time]
+  ____________________________________________________________
+  ____________________________________________________________
+  Nah man, events need '/from' and '/to'! Use: event [desc] /from [s] /to [e]
+  ____________________________________________________________
+  ____________________________________________________________
+  Nah man, events need '/from' and '/to'! Use: event [desc] /from [s] /to [e]
+  ____________________________________________________________
+  ____________________________________________________________
+  you need to tell me which number to mark!
   ____________________________________________________________
   ____________________________________________________________
   Chill, that's not a number! Use something like 'mark 1'.
@@ -53,43 +72,34 @@
   that task number doesn't exist!
   ____________________________________________________________
   ____________________________________________________________
-  I got you bro! I've marked this task as not done yet:
-    [T][ ] borrow book
+  you need to tell me which number to delete!
+  ____________________________________________________________
+  ____________________________________________________________
+  that task number doesn't exist!
+  ____________________________________________________________
+  ____________________________________________________________
+  that task number doesn't exist!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] borrow book
+  1.[T][ ] read book
   2.[D][ ] return book (by: Sunday)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
-  you need to tell me which number to unmark!
-  ____________________________________________________________
-  ____________________________________________________________
-  I don't know what 'hello how are you?' means man!
+  I don't know what 'unknownCommand' means man!
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [D][ ] return book (by: Actually I also don't know o.O)
+    [T][ ]   trimmed task
   Now you have 4 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] borrow book
+  1.[T][ ] read book
   2.[D][ ] return book (by: Sunday)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[D][ ] return book (by: Actually I also don't know o.O)
-  ____________________________________________________________
-  ____________________________________________________________
-  You bet dawg. I have removed this task for you:
-    [D][ ] return book (by: Sunday)
-  Now you have 3 tasks in your list!
-  ____________________________________________________________
-  ____________________________________________________________
-  Here you go bro! Here's your list.
-  1.[T][ ] borrow book
-  2.[E][X] project meeting (from: Mon 2pm to 4pm)
-  3.[D][ ] return book (by: Actually I also don't know o.O)
+  4.[T][ ]   trimmed task
   ____________________________________________________________
   ____________________________________________________________
   You take care bro. Hope to see you again soon!
