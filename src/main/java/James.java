@@ -3,7 +3,13 @@ import java.util.Scanner;
 import exceptions.*;
 import tasks.*;
 
+/**
+ * Represents the main entry point for the James chatbot application.
+ * James is a task management tool that handles todos, deadlines, and events.
+ * James can also handle jobs such as mark, unmark and delete.
+ */
 public class James {
+    // Main entry point that runs the chatbot and handles the user input loop
     public static void main(String[] args) {
         String divider = "  ____________________________________________________________";
         TaskList taskList = new TaskList();
@@ -54,6 +60,7 @@ public class James {
         sc.close();
     }
 
+    // Updates a task's status to done or not done based on the index provided
     private static void handleMarking(String command, String[] words, TaskList taskList) throws JamesException {
         if (words.length < 2) {
             throw new JamesException("you need to tell me which number to " + command + "!");
@@ -73,6 +80,7 @@ public class James {
         taskList.printTask(taskNumber);
     }
 
+    // Parses input to create and add a Todo, Deadline, or Event to the list
     private static void handleTaskCreation(String command, String[] words, TaskList taskList, String input) throws JamesException {
         if (!command.equals("todo") && !command.equals("deadline") && !command.equals("event")) {
             throw new UnknownCommandException(input);
@@ -110,6 +118,7 @@ public class James {
         }
     }
 
+    // Removes a specific task from the list using its list index
     private static void handleDeletion(String command, String[] words, TaskList taskList) throws JamesException {
         if (words.length < 2) {
             throw new JamesException("you need to tell me which number to " + command + "!");
