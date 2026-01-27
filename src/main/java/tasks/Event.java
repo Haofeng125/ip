@@ -17,4 +17,9 @@ public class Event extends Task {
     public String toString() {
         return String.format("[E]%s (from: %s to %s)", super.toString(), startTime, endTime);
     }
+
+    @Override
+    public String toFileFormat() {
+        return String.format("E | %s | %s | %s", super.toFileFormat(), startTime, endTime);
+    }
 }

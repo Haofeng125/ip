@@ -12,7 +12,15 @@ public class James {
     // Main entry point that runs the chatbot and handles the user input loop
     public static void main(String[] args) {
         String divider = "  ____________________________________________________________";
-        TaskList taskList = new TaskList();
+        String DataFilePath = "./data/tasks.txt";
+        TaskList taskList;
+
+        try {
+            Storage storage = new Storage(DataFilePath);
+            taskList = storage.loadTasks();
+        } catch (Exception e) {
+            taskList = new TaskList();
+        }
 
         System.out.println(divider);
         System.out.println("  Wassup! This is James.");
@@ -21,7 +29,7 @@ public class James {
 
         Scanner sc = new Scanner(System.in);
 
-        while (true) {
+        while (sc.hasNext()) {
             try {
                 String input = sc.nextLine().trim();
                 if (input.isEmpty()) continue;
@@ -30,6 +38,8 @@ public class James {
                 String command = words[0].toLowerCase();
 
                 if (command.equals("bye")) {
+                    Storage storage = new Storage(DataFilePath);
+                    storage.saveTasks(taskList);
                     System.out.println(divider);
                     System.out.println("  You take care bro. Hope to see you again soon!");
                     System.out.println(divider);
