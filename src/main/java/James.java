@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.format.DateTimeParseException;
 import exceptions.*;
 import tasks.*;
 
@@ -62,6 +63,8 @@ public class James {
                 System.out.println("  " + e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("  Chill, that's not a number! Use something like 'mark 1'.");
+            } catch (DateTimeParseException e) {
+                System.out.println("  Hey man, you need to input your date in the format of 'yyyy-MM-dd'.");
             } catch (Exception e) {
                 System.out.println("  Whoa bro, I ran into an unexpected error: " + e.getMessage());
             }
