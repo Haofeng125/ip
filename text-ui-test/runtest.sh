@@ -1,33 +1,30 @@
 #!/usr/bin/env bash
 
-# create bin directory if it doesn't exist
-if [ ! -d "../bin" ]
-then
-    mkdir ../bin
-fi
+# 1. Get the absolute path of the project root (one level up from this script)
+# This ensures we always know where we are, even if we move folders
+PROJ_ROOT=$(cd "$(dirname "$0")/.." && pwd)
+TEST_DIR="$PROJ_ROOT/text-ui-test"
 
-# delete output from previous run
-if [ -e "./ACTUAL.TXT" ]
-then
-    rm ACTUAL.TXT
-fi
+# 2. Clean up previous test output
+rm -f "$TEST_DIR/ACTUAL.TXT"
 
-# MINIMUM CHANGE: Added ../src/main/java/tasks/*.java and ../src/main/java/exceptions/*.java
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java ../src/main/java/tasks/*.java ../src/main/java/exceptions/*.java
+# 3. Compile everything from the root - exactly how you do it manually
+cd "$PROJ_ROOT"
+if ! javac -cp ./src/main/java -Xlint:none -d ./bin ./src/main/java/*.java ./src/main/java/tasks/*.java ./src/main/java/exceptions/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
-# run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin James < input.txt > ACTUAL.TXT
+# 4. RUN - This is the crucial part.
+# We run from $PROJ_ROOT so that './data/tasks.txt' resolves to YOUR data folder.
+java -classpath ./bin James < "$TEST_DIR/input.txt" > "$TEST_DIR/ACTUAL.TXT"
 
-# convert to UNIX format
+# 5. Compare results
+cd "$TEST_DIR"
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
-# Use dos2unix on both to ensure line endings match perfectly
 dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
 
-# compare the output to the expected output
 diff ACTUAL.TXT EXPECTED-UNIX.TXT
 if [ $? -eq 0 ]
 then
