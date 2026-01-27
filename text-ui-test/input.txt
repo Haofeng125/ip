@@ -1,6 +1,7 @@
 todo read book
 hey what's up
 deadline return book /by Sunday
+deadline return book /by 2006-01-25
 event project meeting /from Mon 2pm /to 4pm
 list
 mark 1
