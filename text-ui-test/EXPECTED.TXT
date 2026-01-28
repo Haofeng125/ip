@@ -66,22 +66,22 @@
   Nah man, events need '/from' and '/to'! Use: event [desc] /from [s] /to [e]
   ____________________________________________________________
   ____________________________________________________________
-  you need to tell me which number to mark!
+  You need to at least tell me which number to mark hommie!
   ____________________________________________________________
   ____________________________________________________________
   Chill, that's not a number! Use something like 'mark 1'.
   ____________________________________________________________
   ____________________________________________________________
-  that task number doesn't exist!
+  Man, the number you entered is out of the range of your task list!
   ____________________________________________________________
   ____________________________________________________________
-  you need to tell me which number to delete!
+  You need to at least tell me which number to delete hommie!
   ____________________________________________________________
   ____________________________________________________________
-  that task number doesn't exist!
+  Man, the number you entered is out of the range of your task list!
   ____________________________________________________________
   ____________________________________________________________
-  that task number doesn't exist!
+  Man, the number you entered is out of the range of your task list!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.

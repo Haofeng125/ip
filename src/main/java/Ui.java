@@ -31,7 +31,7 @@ public class Ui {
         System.out.println(divider);
     }
 
-    public void greeting() {
+    public void greet() {
         printDivider();
         System.out.println("  Wassup! This is James.");
         System.out.println("  What can I do for you?");
@@ -68,14 +68,6 @@ public class Ui {
 
     public void showJamesError(JamesException je) {
         System.out.println("  " + je.getMessage());
-    }
-
-    public void showNumberError() {
-        System.out.println("  Chill, that's not a number! Use something like 'mark 1'.");
-    }
-
-    public void showError(Exception e) {
-        System.out.println("  Whoa bro, I ran into an unexpected error: " + e.getMessage());
     }
 
     public void printList(TaskList taskList) {

@@ -28,7 +28,7 @@ public class James {
     }
 
     public void run() {
-        this.ui.greeting();
+        this.ui.greet();
         boolean isExit = false;
         while (!isExit) {
             try {
@@ -39,10 +39,6 @@ public class James {
                 isExit = c.isExit();
             } catch (JamesException e) {
                 this.ui.showJamesError(e);
-            } catch (NumberFormatException e) {
-                this.ui.showNumberError();
-            } catch (Exception e) {
-                this.ui.showError(e);
             } finally {
                 this.ui.printDivider();
             }

@@ -20,12 +20,17 @@ public class Parser {
             return new TerminateProgramCommand();
         } else if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
             if (words.length < 2) {
-                throw new JamesException("you need to tell me which number to " + command + "!");
+                throw InvalidNumberException.forMissingNumber(command);
+            }
+            int taskNumber;
+            try {
+                taskNumber = Integer.parseInt(words[1]);
+            } catch (NumberFormatException e) {
+                throw InvalidNumberException.forNotANumber();
             }
 
-            int taskNumber = Integer.parseInt(words[1]);
             if (taskNumber <= 0 || taskNumber > tasks.getSize()) {
-                throw new JamesException("that task number doesn't exist!");
+                throw InvalidNumberException.forNumberOutOfRange();
             }
 
             if (command.equals("mark")) {
