@@ -1,3 +1,7 @@
+package james.command;
+
+import james.*;
+
 public class MarkCommand extends Command {
     private int taskNumber;
 

@@ -1,4 +1,4 @@
-package exceptions;
+package james.exception;
 
 public class InvalidNumberException extends JamesException {
     private InvalidNumberException(String message) {

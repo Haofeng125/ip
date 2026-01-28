@@ -1,4 +1,4 @@
-package exceptions;
+package james.exception;
 
 public class CanNotFindFileException extends JamesException {
     public CanNotFindFileException(String message) {

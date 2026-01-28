@@ -1,4 +1,7 @@
-import tasks.*;
+package james.command;
+
+import james.*;
+import james.task.*;
 
 public class DeleteTaskCommand extends Command {
     private int taskNumber;

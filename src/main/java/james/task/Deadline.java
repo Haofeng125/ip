@@ -1,4 +1,4 @@
-package tasks;
+package james.task;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;

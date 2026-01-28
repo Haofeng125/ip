@@ -1,4 +1,7 @@
-import tasks.*;
+package james.command;
+
+import james.*;
+import james.task.*;
 import java.time.LocalDate;
 
 public class CreateTaskCommand extends Command {

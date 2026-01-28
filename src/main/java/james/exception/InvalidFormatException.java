@@ -1,4 +1,4 @@
-package exceptions;
+package james.exception;
 
 //Throw this when the user's input has an invalid format
 public class InvalidFormatException extends JamesException {

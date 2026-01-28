@@ -1,4 +1,4 @@
-package tasks;
+package james.task;
 
 // Represents a task that occurs within a specific time frame, including a start and end time.
 public class Event extends Task {

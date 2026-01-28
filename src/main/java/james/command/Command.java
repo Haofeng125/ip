@@ -1,6 +1,7 @@
-import exceptions.JamesException;
+package james.command;
 
-import java.io.IOException;
+import james.exception.JamesException;
+import james.*;
 
 public abstract class Command {
     public abstract boolean isExit();

@@ -1,4 +1,4 @@
-package tasks;
+package james.task;
 
 // Represents a simple task without any specific time constraints. public class Todo extends Task
 public class Todo extends Task {

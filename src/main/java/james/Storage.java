@@ -1,11 +1,13 @@
+package james;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import tasks.*;
-import exceptions.*;
+import james.task.*;
+import james.exception.*;
 
 public class Storage {
     private String filePath;

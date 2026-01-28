@@ -1,5 +1,7 @@
+package james;
+
 import java.util.ArrayList;
-import tasks.*;
+import james.task.*;
 
 // Represents a collection of tasks and provides methods for managing and displaying them.
 public class TaskList {

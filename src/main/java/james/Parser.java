@@ -1,6 +1,8 @@
-import exceptions.JamesException;
-import exceptions.*;
-import tasks.*;
+package james;
+
+import james.exception.*;
+import james.task.*;
+import james.command.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

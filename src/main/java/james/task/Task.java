@@ -1,4 +1,4 @@
-package tasks;
+package james.task;
 
 // Represents a general task containing a description and a completion status.
 public class Task {

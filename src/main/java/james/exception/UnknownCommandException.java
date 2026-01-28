@@ -1,4 +1,4 @@
-package exceptions;
+package james.exception;
 
 //Throw this when the user types something that can not be identified as any of the existing task types
 public class UnknownCommandException extends JamesException {

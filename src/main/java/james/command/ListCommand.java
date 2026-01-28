@@ -1,3 +1,7 @@
+package james.command;
+
+import james.*;
+
 public class ListCommand extends Command {
     @Override
     public boolean isExit() {

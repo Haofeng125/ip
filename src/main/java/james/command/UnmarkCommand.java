@@ -1,3 +1,7 @@
+package james.command;
+
+import james.*;
+
 public class UnmarkCommand extends Command {
     private int taskNumber;
 

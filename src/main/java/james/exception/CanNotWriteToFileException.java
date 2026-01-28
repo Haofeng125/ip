@@ -1,4 +1,4 @@
-package exceptions;
+package james.exception;
 
 public class CanNotWriteToFileException extends JamesException {
     public CanNotWriteToFileException(String message) {

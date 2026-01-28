@@ -1,4 +1,4 @@
-package exceptions;
+package james.exception;
 
 //Throw this when a user provides a command like "todo" but leaves the description black
 public class  EmptyDescriptionException extends JamesException {

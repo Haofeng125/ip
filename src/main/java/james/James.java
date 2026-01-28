@@ -1,10 +1,7 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.time.format.DateTimeParseException;
-import exceptions.*;
-import tasks.*;
+package james;
+
+import james.exception.JamesException;
+import james.command.Command;
 
 /**
  * Represents the main entry point for the James chatbot application.
