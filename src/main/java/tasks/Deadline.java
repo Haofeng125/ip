@@ -7,15 +7,12 @@ import java.time.format.DateTimeParseException;
 
 // Represents a specific type of task that includes a description and a completion deadline.
 public class Deadline extends Task {
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    protected String deadline;
     protected LocalDate deadlineTime;
 
     // Initializes a deadline task with a description and a due date
-    public Deadline(String description, String deadline) throws DateTimeParseException {
+    public Deadline(String description, LocalDate deadlineTime) {
         super(description);
-        this.deadline = deadline;
-        this.deadlineTime = LocalDate.parse(deadline, DATE_FORMATTER);
+        this.deadlineTime = deadlineTime;
     }
 
     // Returns a formatted string displaying the task type, status, and deadline
@@ -30,6 +27,9 @@ public class Deadline extends Task {
 
     @Override
     public String toFileFormat() {
-        return String.format("D | %s | %s", super.toFileFormat(), this.deadline);
+        int month = this.deadlineTime.getMonthValue();
+        int year = this.deadlineTime.getYear();
+        int day = this.deadlineTime.getDayOfMonth();
+        return String.format("D | %s | %04d-%02d-%02d", super.toFileFormat(), year, month, day);
     }
 }

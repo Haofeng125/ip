@@ -5,7 +5,7 @@
   ____________________________________________________________
   Say less bro. I've added this task for you:
     [T][ ] read book
-  Now you have 8 tasks in your list!
+  Now you have 1 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   I don't know what 'hey what's up' means man!
@@ -16,25 +16,18 @@
   ____________________________________________________________
   Say less bro. I've added this task for you:
     [D][ ] return book (by: January 25 2006)
-  Now you have 9 tasks in your list!
+  Now you have 2 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
     [E][ ] project meeting (from: Mon 2pm to 4pm)
-  Now you have 10 tasks in your list!
+  Now you have 3 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
   1.[T][ ] read book
   2.[D][ ] return book (by: January 25 2006)
-  3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[T][ ]   trimmed task
-  5.[D][ ] return book (by: January 25 2006)
-  6.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  7.[T][ ]   trimmed task
-  8.[T][ ] read book
-  9.[D][ ] return book (by: January 25 2006)
-  10.[E][ ] project meeting (from: Mon 2pm to 4pm)
+  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   No problem man! I've marked this task as done:
@@ -49,13 +42,6 @@
   1.[T][X] read book
   2.[D][ ] return book (by: January 25 2006)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[T][ ]   trimmed task
-  5.[D][ ] return book (by: January 25 2006)
-  6.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  7.[T][ ]   trimmed task
-  8.[T][ ] read book
-  9.[D][ ] return book (by: January 25 2006)
-  10.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   I got you bro! I've marked this task as not done yet:
@@ -66,13 +52,6 @@
   1.[T][ ] read book
   2.[D][ ] return book (by: January 25 2006)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[T][ ]   trimmed task
-  5.[D][ ] return book (by: January 25 2006)
-  6.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  7.[T][ ]   trimmed task
-  8.[T][ ] read book
-  9.[D][ ] return book (by: January 25 2006)
-  10.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   the description of a todo can not be EMPTY, bro!
@@ -102,42 +81,28 @@
   that task number doesn't exist!
   ____________________________________________________________
   ____________________________________________________________
-  You bet dawg. I have removed this task for you:
-    [D][ ] return book (by: January 25 2006)
-  Now you have 9 tasks in your list!
+  that task number doesn't exist!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
   1.[T][ ] read book
   2.[D][ ] return book (by: January 25 2006)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[T][ ]   trimmed task
-  5.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  6.[T][ ]   trimmed task
-  7.[T][ ] read book
-  8.[D][ ] return book (by: January 25 2006)
-  9.[E][ ] project meeting (from: Mon 2pm to 4pm)
   ____________________________________________________________
   ____________________________________________________________
   I don't know what 'unknownCommand' means man!
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [T][ ]   trimmed task
-  Now you have 10 tasks in your list!
+    [T][ ] trimmed task
+  Now you have 4 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
   1.[T][ ] read book
   2.[D][ ] return book (by: January 25 2006)
   3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[T][ ]   trimmed task
-  5.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  6.[T][ ]   trimmed task
-  7.[T][ ] read book
-  8.[D][ ] return book (by: January 25 2006)
-  9.[E][ ] project meeting (from: Mon 2pm to 4pm)
-  10.[T][ ]   trimmed task
+  4.[T][ ] trimmed task
   ____________________________________________________________
   ____________________________________________________________
   You take care bro. Hope to see you again soon!

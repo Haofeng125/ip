@@ -14,58 +14,28 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public TaskList loadTasks() throws FileNotFoundException {
+    public TaskList loadTasks() throws JamesException {
         TaskList tasks = new TaskList();
-        File file = new File(filePath);
+        Ui ui = new Ui(this.filePath);
+        ArrayList<String> lines = ui.readFile();
 
-        if (!file.exists()) {
-            return tasks;
+        for (String line : lines) {
+            if (line.trim().isEmpty()) continue;
+            Task task = Parser.parseLine(line);
+            if (task != null) {
+                tasks.addTask(task);
+            }
         }
-
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            tasks.addTask(Storage.createTask(line));
-        }
-        scanner.close();
         return tasks;
     }
 
-    private static Task createTask(String line) {
-        String[] parts = line.split(" \\| ");
-        String taskType = parts[0];
-        boolean isCompleted = parts[1].equals("1");
-        Task task;
-
-        switch (taskType) {
-        case "T":
-            task = new Todo(parts[2]);
-            break;
-        case "D":
-            task = new Deadline(parts[2], parts[3]);
-            break;
-        case "E":
-            task = new Event(parts[2], parts[3], parts[4]);
-            break;
-        default:
-            return null;
-        }
-        if (isCompleted) {
-            task.mark();
-        }
-        return task;
-    }
-
-    public void saveTasks(TaskList tasks) throws IOException {
+    public void saveTasks(TaskList tasks) throws JamesException {
         File file = new File(filePath);
         if (file.getParentFile() != null && !file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
 
-        FileWriter fw = new FileWriter(filePath);
-        for (Task task : tasks.getTasks()) {
-            fw.write(task.toFileFormat() + System.lineSeparator());
-        }
-        fw.close();
+        Ui ui = new Ui(this.filePath);
+        ui.writeToFile(tasks);
     }
 }
