@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public TaskList loadTasks() throws IOException {
+    public TaskList loadTasks() throws FileNotFoundException {
         TaskList tasks = new TaskList();
         File file = new File(filePath);
 

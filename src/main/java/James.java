@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.format.DateTimeParseException;
@@ -10,67 +12,67 @@ import tasks.*;
  * James can also handle jobs such as mark, unmark and delete.
  */
 public class James {
-    // Main entry point that runs the chatbot and handles the user input loop
-    public static void main(String[] args) {
-        String divider = "  ____________________________________________________________";
-        String DataFilePath = "./data/tasks.txt";
-        TaskList taskList;
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
 
+    public James(String filePath) {
+        this.storage = new Storage(filePath);
+        this.ui = new Ui();
         try {
-            Storage storage = new Storage(DataFilePath);
-            taskList = storage.loadTasks();
-        } catch (Exception e) {
-            taskList = new TaskList();
+            this.taskList = this.storage.loadTasks();
+        } catch (FileNotFoundException e) {
+            ui.showLoadingError();
+            this.taskList = new TaskList();
         }
+    }
 
-        System.out.println(divider);
-        System.out.println("  Wassup! This is James.");
-        System.out.println("  What can I do for you?");
-        System.out.println(divider);
-
-        Scanner sc = new Scanner(System.in);
-
-        while (sc.hasNext()) {
+    public void run() {
+        ui.greeting();
+        while (true) {
             try {
-                String input = sc.nextLine().trim();
-                if (input.isEmpty()) continue;
+                String fullCommand = ui.readCommand();
+                if (fullCommand.isEmpty()) {
+                    continue;
+                }
 
-                String[] words = input.split(" ", 2);
+                String[] words = fullCommand.split(" ", 2);
                 String command = words[0].toLowerCase();
 
                 if (command.equals("bye")) {
-                    Storage storage = new Storage(DataFilePath);
-                    storage.saveTasks(taskList);
-                    System.out.println(divider);
-                    System.out.println("  You take care bro. Hope to see you again soon!");
-                    System.out.println(divider);
+                    this.storage.saveTasks(this.taskList);
+                    this.ui.bye();
                     break;
                 }
 
-                System.out.println(divider);
+                Ui.printDivider();
 
                 if (command.equals("list")) {
-                    System.out.println("  Here you go bro! Here's your list.");
-                    taskList.printTasks();
+                    ui.printList(this.taskList);
                 } else if (command.equals("mark") || command.equals("unmark")) {
                     handleMarking(command, words, taskList);
                 } else if (command.equals("delete")) {
                     handleDeletion(command, words, taskList);
                 } else {
-                    handleTaskCreation(command, words, taskList, input);
+                    handleTaskCreation(command, words, taskList, fullCommand);
                 }
             } catch (JamesException e) {
-                System.out.println("  " + e.getMessage());
+                ui.showJamesError(e);
             } catch (NumberFormatException e) {
-                System.out.println("  Chill, that's not a number! Use something like 'mark 1'.");
+                ui.showNumberError();
             } catch (DateTimeParseException e) {
-                System.out.println("  Hey man, you need to input your date in the format of 'yyyy-MM-dd'.");
+                ui.showDateError();
             } catch (Exception e) {
-                System.out.println("  Whoa bro, I ran into an unexpected error: " + e.getMessage());
+                ui.showError(e);
             }
-            System.out.println(divider);
+
+            Ui.printDivider();
         }
-        sc.close();
+    }
+
+    // Main entry point that runs the chatbot and handles the user input loop
+    public static void main(String[] args) {
+        new James("./data/tasks.txt").run();
     }
 
     // Updates a task's status to done or not done based on the index provided
@@ -85,10 +87,10 @@ public class James {
 
         if (command.equals("mark")) {
             taskList.markTask(taskNumber);
-            System.out.println("  No problem man! I've marked this task as done:");
+            Ui.markTask();
         } else {
             taskList.unmarkTask(taskNumber);
-            System.out.println("  I got you bro! I've marked this task as not done yet:");
+            Ui.unmarkTask();
         }
         taskList.printTask(taskNumber);
     }
@@ -125,9 +127,7 @@ public class James {
 
         if (task != null) {
             taskList.addTask(task);
-            System.out.println("  Say less bro. I've added this task for you:");
-            taskList.printTask(taskList.getSize());
-            System.out.println("  Now you have " + taskList.getSize() + " tasks in your list!");
+            Ui.addTask(taskList);
         }
     }
 

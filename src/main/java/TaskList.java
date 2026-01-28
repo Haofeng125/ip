@@ -43,9 +43,7 @@ public class TaskList {
 
     // Prints all tasks in the list with their corresponding index numbers
     public void printTasks() {
-        for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println("  " + (i + 1) + "." + this.tasks.get(i).toString());
-        }
+        Ui.printTasks(this.tasks);
     }
 
     // Marks the task at the specified position as completed
@@ -63,7 +61,7 @@ public class TaskList {
     // Prints the string representation of a specific task
     public void printTask(int taskNumber) {
         Task task = getTask(taskNumber);
-        System.out.println("    " + task.toString());
+        Ui.printTask(task);
     }
 
     // Deletes the task at the specified position from the list
@@ -71,6 +69,4 @@ public class TaskList {
         int index = taskNumber - 1;
         this.tasks.remove(index);
     }
-
-
 }
