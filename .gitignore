@@ -1,5 +1,6 @@
-# Ignore Java class files
+# Ignore Java class files and txt files
 *.class
+*.txt
 
 # IDEA files
 /.idea/
