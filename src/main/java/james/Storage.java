@@ -1,11 +1,7 @@
 package james;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import james.task.*;
 import james.exception.*;
 
@@ -33,8 +29,15 @@ public class Storage {
 
     public void saveTasks(TaskList tasks) throws JamesException {
         File file = new File(filePath);
-        if (file.getParentFile() != null && !file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
+        try {
+            if (file.getParentFile() != null && !file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (java.io.IOException e) {
+            throw new JamesException("Could not create file");
         }
 
         Ui ui = new Ui(this.filePath);
