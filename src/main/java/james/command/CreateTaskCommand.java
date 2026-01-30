@@ -15,6 +15,18 @@ public class CreateTaskCommand extends Command {
         this.deadlineTime = deadlineTime;
     }
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public String[] getDescriptions() {
+        return descriptions;
+    }
+
+    public LocalDate getDeadlineTime() {
+        return deadlineTime;
+    }
+
     @Override
     public boolean isExit() {
         return false;
