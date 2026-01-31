@@ -115,6 +115,8 @@ public class Parser {
             return new CreateTaskCommand(command, parts, null);
         } else if (command.equals("list")) {
             return new ListCommand();
+        } else if (command.equals("find")) {
+            return new FindTaskCommand(description);
         } else {
             throw new UnknownCommandException(fullCommand);
         }
