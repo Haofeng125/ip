@@ -11,6 +11,7 @@ import james.command.ListCommand;
 import james.command.MarkCommand;
 import james.command.TerminateProgramCommand;
 import james.command.UnmarkCommand;
+import james.command.FindTaskCommand;
 import james.exception.EmptyDescriptionException;
 import james.exception.InvalidFormatException;
 import james.exception.InvalidNumberException;

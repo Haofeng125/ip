@@ -202,6 +202,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints a numbered list of tasks.
+     *
+     * @param tasks The list of Task objects to search through.
+     * @param keyWord The keyWord to search for in tasks.
+     */
     public void findTask(ArrayList<Task> tasks, String keyWord) {
         System.out.println("  Bro, here are the matching tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
