@@ -19,9 +19,9 @@ import james.task.Task;
  */
 public class Ui {
     /** The decorative line used to separate message blocks in the console. */
-    private static final String divider = "  ____________________________________________________________";
+    private static final String DIVIDER = "  ____________________________________________________________";
     private String filePath;
-    private Scanner sc;
+    private Scanner scanner;
 
     /**
      * Initializes a Ui object for standard console input/output.
