@@ -6,10 +6,8 @@ package james.task;
  * as a base for more specific types of tasks.
  */
 public class Task {
-    /** The textual description of the task. */
-    protected String description;
-    /** The completion status of the task. */
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     /**
      * Initializes a new task with the specified description.
@@ -62,6 +60,6 @@ public class Task {
      * @return A pipe-separated string containing completion status and description.
      */
     public String toFileFormat() {
-        return String.format("%s | %s", (isDone ? "1" : "0"), this.description);
+        return String.format("%s | %s", (this.isDone ? "1" : "0"), this.description);
     }
 }

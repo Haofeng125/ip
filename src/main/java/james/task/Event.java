@@ -6,10 +6,8 @@ package james.task;
  * basic task description and status.
  */
 public class Event extends Task {
-    /** The starting time or date of the event. */
-    protected String startTime;
-    /** The ending time or date of the event. */
-    protected String endTime;
+    private String startTime;
+    private String endTime;
 
     /**
      * Initializes a new Event task with a description, start time, and end time.
@@ -32,7 +30,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (from: %s to %s)", super.toString(), startTime, endTime);
+        return String.format("[E]%s (from: %s to %s)", super.toString(), this.startTime, this.endTime);
     }
 
     /**
@@ -43,6 +41,6 @@ public class Event extends Task {
      */
     @Override
     public String toFileFormat() {
-        return String.format("E | %s | %s | %s", super.toFileFormat(), startTime, endTime);
+        return String.format("E | %s | %s | %s", super.toFileFormat(), this.startTime, this.endTime);
     }
 }

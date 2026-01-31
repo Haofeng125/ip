@@ -1,14 +1,23 @@
 package james.command;
 
-import james.*;
-import james.task.*;
 import java.time.LocalDate;
 
+<<<<<<< HEAD
 /**
  * Handles the creation and addition of various task types to the task list.
  * This command can instantiate Todo, Deadline, or Event objects based on
  * the provided task type and descriptions.
  */
+=======
+import james.Storage;
+import james.TaskList;
+import james.Ui;
+import james.task.Deadline;
+import james.task.Event;
+import james.task.Task;
+import james.task.Todo;
+
+>>>>>>> branch-A-CodingStandard
 public class CreateTaskCommand extends Command {
     /** The type of task to create (e.g., "todo", "deadline", "event"). */
     private String taskType;
@@ -79,6 +88,7 @@ public class CreateTaskCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task;
+
         if (taskType.equals("todo")) {
             task = new Todo(descriptions[0]);
         } else if (taskType.equals("deadline")) {
@@ -86,6 +96,7 @@ public class CreateTaskCommand extends Command {
         } else {
             task = new Event(descriptions[0], descriptions[1], descriptions[2]);
         }
+
         tasks.addTask(task);
         ui.addTask(tasks);
     }
