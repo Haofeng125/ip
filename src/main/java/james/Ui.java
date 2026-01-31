@@ -112,4 +112,13 @@ public class Ui {
             System.out.println("  " + (i + 1) + "." + tasks.get(i).toString());
         }
     }
+
+    public void findTask(ArrayList<Task> tasks, String keyWord) {
+        System.out.println("  Bro, here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            if (task.toString().toLowerCase().contains(keyWord.toLowerCase()))
+                this.printTask(task);
+        }
+    }
 }

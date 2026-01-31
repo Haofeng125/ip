@@ -9,6 +9,7 @@ mark 3
 list
 unmark 1
 list
+find book
 todo
 deadline return book
 event project meeting /from Mon 2pm
