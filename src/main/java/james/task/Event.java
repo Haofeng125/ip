@@ -1,23 +1,46 @@
 package james.task;
 
-// Represents a task that occurs within a specific time frame, including a start and end time.
+/**
+ * Represents a task that occurs within a specific time frame.
+ * An Event includes a start time and an end time in addition to the
+ * basic task description and status.
+ */
 public class Event extends Task {
+    /** The starting time or date of the event. */
     protected String startTime;
+    /** The ending time or date of the event. */
     protected String endTime;
 
-    // Initializes an event task with a description, start time, and end time.
+    /**
+     * Initializes a new Event task with a description, start time, and end time.
+     *
+     * @param description The textual description of the event.
+     * @param startTime The string representation of the start time.
+     * @param endTime The string representation of the end time.
+     */
     public Event(String description, String startTime, String endTime) {
         super(description);
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    // Returns a formatted string displaying the task type, completion status, and time duration.
+    /**
+     * {@inheritDoc}
+     * Prefixes the representation with "[E]" and appends the event duration.
+     *
+     * @return A formatted string displaying task type, status, and time range.
+     */
     @Override
     public String toString() {
         return String.format("[E]%s (from: %s to %s)", super.toString(), startTime, endTime);
     }
 
+    /**
+     * {@inheritDoc}
+     * Identifies the task as an "E" and appends the start and end times.
+     *
+     * @return A pipe-separated string formatted for storage.
+     */
     @Override
     public String toFileFormat() {
         return String.format("E | %s | %s | %s", super.toFileFormat(), startTime, endTime);

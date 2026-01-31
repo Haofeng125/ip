@@ -1,21 +1,34 @@
 package james.task;
 
-import java.time.LocalDateTime;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-// Represents a specific type of task that includes a description and a completion deadline.
+/**
+ * Represents a task with a specific deadline.
+ * A Deadline task includes a date by which the task must be completed,
+ * in addition to the standard task description and status.
+ */
 public class Deadline extends Task {
-    protected LocalDate deadlineTime;
+    /** The date by which the task is due. */
+    private LocalDate deadlineTime;
 
-    // Initializes a deadline task with a description and a due date
+    /**
+     * Initializes a new Deadline task with a description and a due date.
+     *
+     * @param description The textual description of the task.
+     * @param deadlineTime The LocalDate representing the deadline.
+     */
     public Deadline(String description, LocalDate deadlineTime) {
         super(description);
         this.deadlineTime = deadlineTime;
     }
 
-    // Returns a formatted string displaying the task type, status, and deadline
+    /**
+     * {@inheritDoc}
+     * Prefixes the representation with "[D]" and appends the deadline
+     * formatted as "Month Day Year" (e.g., Jan 31 2026).
+     *
+     * @return A formatted string displaying task type, status, and due date.
+     */
     @Override
     public String toString() {
         String month = this.deadlineTime.getMonth().name();
@@ -25,6 +38,12 @@ public class Deadline extends Task {
         return String.format("[D]%s (by: %s %s %d)", super.toString(), month, day, year);
     }
 
+    /**
+     * {@inheritDoc}
+     * Identifies the task as "D" and appends the deadline date in YYYY-MM-DD format.
+     *
+     * @return A pipe-separated string formatted for storage.
+     */
     @Override
     public String toFileFormat() {
         int month = this.deadlineTime.getMonthValue();
