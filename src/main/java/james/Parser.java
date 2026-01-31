@@ -7,7 +7,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Deals with making sense of the user command and translating it into program actions.
+ * Provides methods to parse raw user input into Command objects and strings from
+ * storage files into Task objects.
+ */
 public class Parser {
+
+    /**
+     * Parses the raw user input into a specific Command object.
+     *
+     * @param fullCommand The full line of text entered by the user.
+     * @param tasks The current list of tasks, used for range validation.
+     * @return A Command object corresponding to the user's intent.
+     * @throws JamesException If the command is unknown, the format is incorrect,
+     * or the task index is out of bounds.
+     */
     public static Command parseCommand(String fullCommand, TaskList tasks) throws JamesException {
         String[] words = fullCommand.split(" ", 2);
         String command = words[0].toLowerCase();
@@ -85,6 +100,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a single line from the data storage file into a Task object.
+     *
+     * @param line The pipe-separated string representing a task in the storage file.
+     * @return The reconstructed Task object, or null if the task type is unknown.
+     */
     public static Task parseLine (String line) {
         String[] parts = line.split(" \\| ");
         String type = parts[0].toUpperCase();
