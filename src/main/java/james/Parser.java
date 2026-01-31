@@ -1,17 +1,32 @@
 package james;
 
-import james.exception.*;
-import james.task.*;
-import james.command.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import james.command.Command;
+import james.command.CreateTaskCommand;
+import james.command.DeleteTaskCommand;
+import james.command.ListCommand;
+import james.command.MarkCommand;
+import james.command.TerminateProgramCommand;
+import james.command.UnmarkCommand;
+import james.exception.EmptyDescriptionException;
+import james.exception.InvalidFormatException;
+import james.exception.InvalidNumberException;
+import james.exception.JamesException;
+import james.exception.UnknownCommandException;
+import james.task.Deadline;
+import james.task.Event;
+import james.task.Task;
+import james.task.Todo;
 
 public class Parser {
     public static Command parseCommand(String fullCommand, TaskList tasks) throws JamesException {
         String[] words = fullCommand.split(" ", 2);
         String command = words[0].toLowerCase();
         String description;
+
         if (words.length > 1) {
             description = words[1];
         } else {
@@ -24,6 +39,7 @@ public class Parser {
             if (words.length < 2) {
                 throw InvalidNumberException.forMissingNumber(command);
             }
+
             int taskNumber;
             try {
                 taskNumber = Integer.parseInt(words[1]);
@@ -46,6 +62,7 @@ public class Parser {
             if (words.length < 2 || words[1].trim().isEmpty()) {
                 throw new EmptyDescriptionException(command);
             }
+
             String[] parts = new String[1];
             parts[0] = description.trim();
             return new CreateTaskCommand(command, parts, null);
@@ -55,11 +72,13 @@ public class Parser {
             }
 
             String[] parts = description.split(" /by ", 2);
-            if (parts.length < 2) throw InvalidFormatException.forDeadline();
+            if (parts.length < 2) {
+                throw InvalidFormatException.forDeadline();
+            }
 
             try {
-                DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate deadlineTime = LocalDate.parse(parts[1], DATE_FORMATTER);
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate deadlineTime = LocalDate.parse(parts[1], dateFormatter);
                 return new CreateTaskCommand(command, parts, deadlineTime);
             } catch (DateTimeParseException e) {
                 throw InvalidFormatException.forLocalDate();
@@ -68,6 +87,7 @@ public class Parser {
             if (!description.contains(" /from ") || !description.contains(" /to ")) {
                 throw InvalidFormatException.forEvent();
             }
+
             String info = description.split(" /from ")[0];
             String times = description.split(" /from ")[1];
             String startTime = times.split(" /to ")[0];
@@ -85,7 +105,7 @@ public class Parser {
         }
     }
 
-    public static Task parseLine (String line) {
+    public static Task parseLine(String line) {
         String[] parts = line.split(" \\| ");
         String type = parts[0].toUpperCase();
         boolean isDone = parts[1].equals("1");
@@ -110,6 +130,7 @@ public class Parser {
         if (isDone) {
             task.mark();
         }
+
         return task;
     }
 }

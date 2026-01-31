@@ -1,7 +1,8 @@
 package james.command;
 
-import james.*;
-import james.task.*;
+import james.Storage;
+import james.TaskList;
+import james.Ui;
 
 public class DeleteTaskCommand extends Command {
     private int taskNumber;
@@ -18,7 +19,8 @@ public class DeleteTaskCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.deleteTask1(tasks, this.taskNumber);
-        tasks.removeTask(taskNumber);
+        tasks.removeTask(this.taskNumber);
+
         ui.deleteTask2(tasks);
     }
 }

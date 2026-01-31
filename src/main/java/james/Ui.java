@@ -1,7 +1,5 @@
 package james;
 
-import james.exception.*;
-import james.task.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,28 +7,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Ui {
-    private static final String divider = "  ____________________________________________________________";
-    private String filePath;
-    private Scanner sc;
+import james.exception.CanNotFindFileException;
+import james.exception.CanNotWriteToFileException;
+import james.exception.JamesException;
+import james.task.Task;
 
+public class Ui {
+    private static final String DIVIDER = "  ____________________________________________________________";
+    private String filePath;
+    private Scanner scanner;
 
     public Ui() {
-        this.sc = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
     }
 
     public Ui(String filePath) throws JamesException {
         try {
             this.filePath = filePath;
             File file = new File(filePath);
-            this.sc = new Scanner(file);
+            this.scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
             throw new CanNotFindFileException(e.getMessage());
         }
     }
 
     public void printDivider() {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
     }
 
     public void greet() {
@@ -41,7 +43,7 @@ public class Ui {
     }
 
     public String readCommand() {
-        return this.sc.nextLine().trim();
+        return this.scanner.nextLine().trim();
     }
 
     public void bye() {
@@ -49,27 +51,27 @@ public class Ui {
     }
 
     public ArrayList<String> readFile() {
-        ArrayList<String> list = new ArrayList<>();
-        while (this.sc.hasNextLine()) {
-            list.add(this.sc.nextLine().trim());
+        ArrayList<String> lines = new ArrayList<>();
+        while (this.scanner.hasNextLine()) {
+            lines.add(this.scanner.nextLine().trim());
         }
-        return list;
+        return lines;
     }
 
     public void writeToFile(TaskList tasks) throws JamesException {
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fileWriter = new FileWriter(filePath);
             for (int i = 1; i <= tasks.getSize(); i++) {
-                fw.write(tasks.getTask(i).toFileFormat() + System.lineSeparator());
+                fileWriter.write(tasks.getTask(i).toFileFormat() + System.lineSeparator());
             }
-            fw.close();
-        } catch (IOException e){
+            fileWriter.close();
+        } catch (IOException e) {
             throw new CanNotWriteToFileException(e.getMessage());
         }
     }
 
-    public void showJamesError(JamesException je) {
-        System.out.println("  " + je.getMessage());
+    public void showJamesError(JamesException jamesException) {
+        System.out.println("  " + jamesException.getMessage());
     }
 
     public void printList(TaskList taskList) {
@@ -80,7 +82,6 @@ public class Ui {
     public void markTask(TaskList tasks, int taskNumber) {
         System.out.println("  No problem man! I've marked this task as done:");
         tasks.printTask(this, taskNumber);
-
     }
 
     public void unmarkTask(TaskList tasks, int taskNumber) {

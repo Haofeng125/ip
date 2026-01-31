@@ -1,8 +1,14 @@
 package james.command;
 
-import james.*;
-import james.task.*;
 import java.time.LocalDate;
+
+import james.Storage;
+import james.TaskList;
+import james.Ui;
+import james.task.Deadline;
+import james.task.Event;
+import james.task.Task;
+import james.task.Todo;
 
 public class CreateTaskCommand extends Command {
     private String taskType;
@@ -35,6 +41,7 @@ public class CreateTaskCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task;
+
         if (taskType.equals("todo")) {
             task = new Todo(descriptions[0]);
         } else if (taskType.equals("deadline")) {
@@ -42,6 +49,7 @@ public class CreateTaskCommand extends Command {
         } else {
             task = new Event(descriptions[0], descriptions[1], descriptions[2]);
         }
+
         tasks.addTask(task);
         ui.addTask(tasks);
     }
