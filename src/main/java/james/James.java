@@ -3,6 +3,11 @@ package james;
 import james.command.Command;
 import james.exception.JamesException;
 
+/**
+ * Represents the main logic of the James chatbot application.
+ * James is a task management assistant that helps users track todos, deadlines, and events.
+ * It coordinates the User Interface, Storage, and TaskList components.
+ */
 public class James {
     private Storage storage;
     private TaskList tasks;
@@ -16,7 +21,7 @@ public class James {
      */
     public James(String filePath) {
         this.storage = new Storage(filePath);
-        this.ui = new Ui();
+        this.ui = new Ui(filePath);
         try {
             this.tasks = this.storage.loadTasks();
         } catch (JamesException e) {
@@ -24,6 +29,24 @@ public class James {
             this.tasks = new TaskList();
         }
     }
+
+    /**
+     * Generates a response for the GUI by processing user input.
+     * This is the main entry point for the FXML-based interface.
+     *
+     * @param input The raw user input string from the GUI.
+     * @return James's formatted response.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parseCommand(input, this.tasks);
+            command.execute(this.tasks, this.ui, this.storage);
+            return ui.getAndClearResponse(); // This grabs everything from our new buffer!
+        } catch (JamesException e) {
+            return e.getMessage();
+        }
+    }
+
 
     /**
      * Starts the main program loop.
@@ -40,6 +63,7 @@ public class James {
                 this.ui.printDivider();
                 Command command = Parser.parseCommand(fullCommand, this.tasks);
                 command.execute(this.tasks, this.ui, this.storage);
+                this.ui.getAndClearResponse();
                 isExit = command.isExit();
             } catch (JamesException e) {
                 this.ui.showJamesError(e);

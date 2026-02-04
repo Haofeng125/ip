@@ -22,6 +22,7 @@ public class Ui {
     private static final String DIVIDER = "  ____________________________________________________________";
     private String filePath;
     private Scanner scanner;
+    private StringBuilder responseBuffer = new StringBuilder();
 
     /**
      * Initializes a Ui object for standard console input/output.
@@ -31,19 +32,21 @@ public class Ui {
     }
 
     /**
-     * Initializes a Ui object for reading data from a specific file.
+     * Initializes an Ui object for reading data from a specific file.
      *
      * @param filePath The path to the file to be read.
      * @throws JamesException If the specified file cannot be found.
      */
-    public Ui(String filePath) throws JamesException {
-        try {
-            this.filePath = filePath;
-            File file = new File(filePath);
-            this.scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            throw new CanNotFindFileException(e.getMessage());
-        }
+    public Ui(String filePath) {
+        this.filePath = filePath;
+    }
+
+    /**
+     * Internal helper to route all text to both the GUI buffer and the System console.
+     */
+    private void appendAndPrint(String message) {
+        responseBuffer.append(message).append("\n");
+        System.out.println("  " + message);
     }
 
     /**
@@ -58,8 +61,8 @@ public class Ui {
      */
     public void greet() {
         printDivider();
-        System.out.println("  Wassup! This is James.");
-        System.out.println("  What can I do for you?");
+        appendAndPrint("Wassup! This is James.");
+        appendAndPrint("What can I do for you?");
         printDivider();
     }
 
@@ -69,14 +72,17 @@ public class Ui {
      * @return The trimmed command string.
      */
     public String readCommand() {
-        return this.scanner.nextLine().trim();
+        if (this.scanner.hasNextLine()) {
+            return this.scanner.nextLine().trim();
+        }
+        return "";
     }
 
     /**
      * Displays the exit message when the application terminates.
      */
     public void bye() {
-        System.out.println("  You take care bro. Hope to see you again soon!");
+        appendAndPrint("You take care bro. Hope to see you again soon!");
     }
 
     /**
@@ -84,10 +90,17 @@ public class Ui {
      *
      * @return An ArrayList of strings, each representing a line in the file.
      */
-    public ArrayList<String> readFile() {
+    public ArrayList<String> readFile() throws JamesException {
         ArrayList<String> lines = new ArrayList<>();
-        while (this.scanner.hasNextLine()) {
-            lines.add(this.scanner.nextLine().trim());
+        try {
+            File file = new File(this.filePath); // Ensure filePath is set!
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNextLine()) {
+                lines.add(fileScanner.nextLine().trim());
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            throw new CanNotFindFileException("File missing at: " + filePath);
         }
         return lines;
     }
@@ -100,7 +113,12 @@ public class Ui {
      */
     public void writeToFile(TaskList tasks) throws JamesException {
         try {
-            FileWriter fileWriter = new FileWriter(filePath);
+            File file = new File(filePath);
+            File parentDir = file.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs(); // Creates 'data' folder if it disappeared
+            }
+            FileWriter fileWriter = new FileWriter(file);
             for (int i = 1; i <= tasks.getSize(); i++) {
                 fileWriter.write(tasks.getTask(i).toFileFormat() + System.lineSeparator());
             }
@@ -116,7 +134,7 @@ public class Ui {
      * @param je The JamesException containing the error message.
      */
     public void showJamesError(JamesException je) {
-        System.out.println("  " + je.getMessage());
+        appendAndPrint(je.getMessage());
     }
 
     /**
@@ -125,7 +143,7 @@ public class Ui {
      * @param taskList The TaskList to be displayed.
      */
     public void printList(TaskList taskList) {
-        System.out.println("  Here you go bro! Here's your list.");
+        appendAndPrint("Here you go bro! Here's your list.");
         taskList.printTasks(this);
     }
 
@@ -136,7 +154,7 @@ public class Ui {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void markTask(TaskList tasks, int taskNumber) {
-        System.out.println("  No problem man! I've marked this task as done:");
+        appendAndPrint("No problem man! I've marked this task as done:");
         tasks.printTask(this, taskNumber);
     }
 
@@ -147,7 +165,7 @@ public class Ui {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void unmarkTask(TaskList tasks, int taskNumber) {
-        System.out.println("  I got you bro! I've marked this task as not done yet:");
+        appendAndPrint("I got you bro! I've marked this task as not done yet:");
         tasks.printTask(this, taskNumber);
     }
 
@@ -157,9 +175,9 @@ public class Ui {
      * @param taskList The TaskList after the addition.
      */
     public void addTask(TaskList taskList) {
-        System.out.println("  Say less bro. I've added this task for you:");
+        appendAndPrint("Say less bro. I've added this task for you:");
         taskList.printTask(this, taskList.getSize());
-        System.out.println("  Now you have " + taskList.getSize() + " tasks in your list!");
+        appendAndPrint("Now you have " + taskList.getSize() + " tasks in your list!");
     }
 
     /**
@@ -169,9 +187,9 @@ public class Ui {
      * @param remainingSize The size of task list after the deletion.
      */
     public void deleteTask(Task deletedTask, int remainingSize) {
-        System.out.println("  You bet dawg. I have removed this task for you:");
+        appendAndPrint("You bet dawg. I have removed this task for you:");
         printTask(deletedTask);
-        System.out.println("  Now you have " + remainingSize + " tasks in your list!");
+        appendAndPrint("Now you have " + remainingSize + " tasks in your list!");
     }
 
     /**
@@ -180,7 +198,7 @@ public class Ui {
      * @param task The task to be printed.
      */
     public void printTask(Task task) {
-        System.out.println("    " + task.toString());
+        appendAndPrint("  " + task.toString());
     }
 
     /**
@@ -190,22 +208,32 @@ public class Ui {
      */
     public void printTasks(ArrayList<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("  " + (i + 1) + "." + tasks.get(i).toString());
+            appendAndPrint((i + 1) + "." + tasks.get(i).toString());
         }
     }
 
     /**
-     * Prints a numbered list of tasks.
+     * Prints a numbered list of tasks that match a keyword.
      *
      * @param tasks The list of Task objects to search through.
      * @param keyWord The keyWord to search for in tasks.
      */
     public void findTask(ArrayList<Task> tasks, String keyWord) {
-        System.out.println("  Bro, here are the matching tasks in your list:");
+        appendAndPrint("Bro, here are the matching tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            if (task.toString().toLowerCase().contains(keyWord.toLowerCase()))
+            if (task.toString().toLowerCase().contains(keyWord.toLowerCase())) {
                 this.printTask(task);
+            }
         }
+    }
+
+    /**
+     * Clears the buffer and returns the collected string for the GUI.
+     */
+    public String getAndClearResponse() {
+        String result = responseBuffer.toString().trim();
+        responseBuffer.setLength(0);
+        return result;
     }
 }
