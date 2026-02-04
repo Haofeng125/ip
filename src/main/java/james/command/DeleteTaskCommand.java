@@ -3,6 +3,7 @@ package james.command;
 import james.Storage;
 import james.TaskList;
 import james.Ui;
+import james.task.Task;
 
 /**
  * Represents a command to remove a task from the task list.
@@ -41,9 +42,9 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.deleteTask1(tasks, this.taskNumber);
+        Task taskToDelete = tasks.getTask(this.taskNumber);
         tasks.removeTask(this.taskNumber);
-
-        ui.deleteTask2(tasks);
+        int remainingSize = tasks.getSize();
+        ui.deleteTask(taskToDelete, remainingSize);
     }
 }

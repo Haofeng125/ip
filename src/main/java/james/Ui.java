@@ -163,23 +163,15 @@ public class Ui {
     }
 
     /**
-     * Confirms the removal of a task.
+     * Showing the confirmation message of the removal of a task.
      *
-     * @param tasks The TaskList containing the task.
-     * @param taskNumber The 1-indexed position of the task that was removed.
+     * @param deletedTask The task we just deleted.
+     * @param remainingSize The size of task list after the deletion.
      */
-    public void deleteTask1(TaskList tasks, int taskNumber) {
+    public void deleteTask(Task deletedTask, int remainingSize) {
         System.out.println("  You bet dawg. I have removed this task for you:");
-        tasks.printTask(this, taskNumber);
-    }
-
-    /**
-     * Displays the updated task count after a deletion.
-     *
-     * @param tasks The TaskList after removal.
-     */
-    public void deleteTask2(TaskList tasks) {
-        System.out.println("  Now you have " + tasks.getSize() + " tasks in your list!");
+        printTask(deletedTask);
+        System.out.println("  Now you have " + remainingSize + " tasks in your list!");
     }
 
     /**
