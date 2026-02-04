@@ -24,7 +24,8 @@ public class DeleteTaskCommand extends Command {
 
     /**
      * {@inheritDoc}
-     * * @return Always false as deleting a task does not exit the application.
+     *
+     * @return Always false as deleting a task does not exit the application.
      */
     @Override
     public boolean isExit() {
