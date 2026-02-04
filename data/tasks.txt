@@ -1,0 +1,4 @@
+T | 0 | read book
+D | 0 | return book | 2006-01-25
+E | 1 | project meeting | Mon 2pm | 4pm
+T | 0 | trimmed task

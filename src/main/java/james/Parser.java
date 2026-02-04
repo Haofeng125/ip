@@ -7,11 +7,11 @@ import java.time.format.DateTimeParseException;
 import james.command.Command;
 import james.command.CreateTaskCommand;
 import james.command.DeleteTaskCommand;
+import james.command.FindTaskCommand;
 import james.command.ListCommand;
 import james.command.MarkCommand;
 import james.command.TerminateProgramCommand;
 import james.command.UnmarkCommand;
-import james.command.FindTaskCommand;
 import james.exception.EmptyDescriptionException;
 import james.exception.InvalidFormatException;
 import james.exception.InvalidNumberException;
@@ -36,7 +36,7 @@ public class Parser {
      * @param tasks The current list of tasks, used for range validation.
      * @return A Command object corresponding to the user's intent.
      * @throws JamesException If the command is unknown, the format is incorrect,
-     * or the task index is out of bounds.
+     *     or the task index is out of bounds.
      */
     public static Command parseCommand(String fullCommand, TaskList tasks) throws JamesException {
         String[] words = fullCommand.split(" ", 2);
@@ -129,7 +129,7 @@ public class Parser {
      * @param line The pipe-separated string representing a task in the storage file.
      * @return The reconstructed Task object, or null if the task type is unknown.
      */
-    public static Task parseLine (String line) {
+    public static Task parseLine(String line) {
         String[] parts = line.split(" \\| ");
         String type = parts[0].toUpperCase();
         boolean isDone = parts[1].equals("1");
