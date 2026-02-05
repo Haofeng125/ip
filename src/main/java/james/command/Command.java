@@ -15,7 +15,8 @@ public abstract class Command {
 
     /**
      * Indicates whether this command is a termination command.
-     * * @return True if the application should exit after this command, false otherwise.
+     *
+     * @return True if the application should exit after this command, false otherwise.
      */
     public abstract boolean isExit();
 

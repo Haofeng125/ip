@@ -12,7 +12,8 @@ public class ListCommand extends Command {
 
     /**
      * {@inheritDoc}
-     * * @return Always false as listing tasks does not terminate the program.
+     *
+     * @return Always false as listing tasks does not terminate the program.
      */
     @Override
     public boolean isExit() {

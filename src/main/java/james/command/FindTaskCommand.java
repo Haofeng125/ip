@@ -1,8 +1,8 @@
 package james.command;
 
-import james.Ui;
 import james.Storage;
 import james.TaskList;
+import james.Ui;
 
 /**
  * Represents a command to search for a task including specific contents in the task list.
@@ -23,7 +23,8 @@ public class FindTaskCommand extends Command {
 
     /**
      * {@inheritDoc}
-     * * @return Always false as searching through tasks does not exit the application.
+     *
+     * @return Always false as searching through tasks does not exit the application.
      */
     @Override
     public boolean isExit() {
