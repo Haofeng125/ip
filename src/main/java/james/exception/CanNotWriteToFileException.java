@@ -12,7 +12,7 @@ public class CanNotWriteToFileException extends JamesException {
      * Constructs a new CanNotWriteToFileException with a predefined error message.
      *
      * @param message The original technical error message from the I/O failure
-     * (not currently displayed to the user).
+     *     (not currently displayed to the user).
      */
     public CanNotWriteToFileException(String message) {
         super("Opps man! I can not write to your file 'task.txt'.");

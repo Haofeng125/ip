@@ -41,6 +41,7 @@ public class InvalidFormatException extends JamesException {
      * @return An InvalidFormatException with event syntax instructions.
      */
     public static InvalidFormatException forEvent() {
-        return new InvalidFormatException("Nah man, events need '/from' and '/to'! Use: event [desc] /from [s] /to [e]");
+        return new InvalidFormatException("Nah man, events need '/from' and "
+                + "'/to'! Use: event [desc] /from [s] /to [e]");
     }
 }

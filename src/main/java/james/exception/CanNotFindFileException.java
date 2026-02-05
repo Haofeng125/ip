@@ -12,7 +12,7 @@ public class CanNotFindFileException extends JamesException {
      * Constructs a new CanNotFindFileException with a friendly warning message.
      *
      * @param message The original detail message explaining the file's absence
-     * (not displayed to the user).
+     *     (not displayed to the user).
      */
     public CanNotFindFileException(String message) {
         super("I can not find such a file man!");

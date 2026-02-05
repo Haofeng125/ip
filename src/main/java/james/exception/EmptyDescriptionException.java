@@ -13,7 +13,7 @@ public class EmptyDescriptionException extends JamesException {
      * the task type that was missing a description.
      *
      * @param taskType The type of task being created (e.g., "todo", "deadline")
-     * when the error occurred.
+     *     when the error occurred.
      */
     public EmptyDescriptionException(String taskType) {
         super("the description of a " + taskType + " can not be EMPTY, bro!");
