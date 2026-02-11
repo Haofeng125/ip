@@ -22,10 +22,10 @@ public class Ui {
     private static final String DIVIDER = "  ____________________________________________________________";
     private String filePath;
     private Scanner scanner;
-    private StringBuilder responseBuffer = new StringBuilder();
+    private final StringBuilder responseBuffer = new StringBuilder();
 
     /**
-     * Initializes a Ui object for standard console input/output.
+     * Initializes an Ui object for standard console input/output.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
@@ -35,7 +35,6 @@ public class Ui {
      * Initializes an Ui object for reading data from a specific file.
      *
      * @param filePath The path to the file to be read.
-     * @throws JamesException If the specified file cannot be found.
      */
     public Ui(String filePath) {
         this.filePath = filePath;
