@@ -20,6 +20,9 @@ public class James {
      * @param filePath The file path where task data is stored and loaded from.
      */
     public James(String filePath) {
+        // Assertion: Ensure the file path provided is valid
+        assert filePath != null && !filePath.isEmpty() : "File path cannot be null or empty";
+
         this.storage = new Storage(filePath);
         this.ui = new Ui(filePath);
         try {
@@ -28,6 +31,9 @@ public class James {
             ui.showJamesError(e);
             this.tasks = new TaskList();
         }
+
+        // Assertion: Ensure tasks list is initialized (even if empty) after constructor logic
+        assert this.tasks != null : "Task list should be initialized";
     }
 
     /**
@@ -38,6 +44,11 @@ public class James {
      * @return James's formatted response.
      */
     public String getResponse(String input) {
+        assert input != null : "Input command cannot be null";
+        assert this.tasks != null : "Task list is not initialized";
+        assert this.ui != null : "UI is not initialized";
+        assert this.storage != null : "Storage is not initialized";
+
         try {
             Command command = Parser.parseCommand(input, this.tasks);
             command.execute(this.tasks, this.ui, this.storage);
@@ -54,6 +65,8 @@ public class James {
      * until an exit command is issued.
      */
     public void run() {
+        assert this.ui != null : "UI must be initialized before running the application";
+
         this.ui.greet();
         boolean isExit = false;
 
