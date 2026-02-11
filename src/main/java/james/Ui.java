@@ -22,7 +22,7 @@ public class Ui {
     private static final String DIVIDER = "  ____________________________________________________________";
     private String filePath;
     private Scanner scanner;
-    private StringBuilder responseBuffer = new StringBuilder();
+    private final StringBuilder responseBuffer = new StringBuilder();
 
     /**
      * Initializes an Ui object for standard console input/output.

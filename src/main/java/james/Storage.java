@@ -13,7 +13,7 @@ import james.task.Task;
  * used to store the user's task list.
  */
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     /**
      * Initializes a Storage object with a specific file path.
@@ -33,10 +33,21 @@ public class Storage {
      * @throws JamesException If there is an error reading the file or parsing data.
      */
     public TaskList loadTasks() throws JamesException {
-        TaskList tasks = new TaskList();
         Ui ui = new Ui(this.filePath);
         ArrayList<String> lines = ui.readFile();
         assert lines != null : "Read lines from UI should not be null";
+        TaskList tasks = addTasksToTaskList(lines);
+        return tasks;
+    }
+
+    /**
+     * Load Tasks from an array list of strings and save them to task list.
+     *
+     * @param lines The array list of Strings keeping track of the task information from the file.
+     * @return A task list containing tasks converted from the String array.
+     */
+    public TaskList addTasksToTaskList(ArrayList<String> lines) {
+        TaskList tasks = new TaskList();
         for (String line : lines) {
             if (line.trim().isEmpty()) {
                 continue;
@@ -61,20 +72,35 @@ public class Storage {
     public void saveTasks(TaskList tasks) throws JamesException {
         assert tasks != null : "Cannot save a null task list";
         File file = new File(filePath);
+        createNewDirectory(file);
+        createNewFile(file);
+        Ui ui = new Ui(this.filePath);
+        ui.writeToFile(tasks);
+    }
 
+    /**
+     * Create the file's parent directory if it is missing currently.
+     *
+     * @param file the file we want to access.
+     */
+    public void createNewDirectory(File file) {
+        if (file.getParentFile() != null && !file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+    }
+
+    /**
+     * Create the file if it is missing currently.
+     *
+     * @param file the file we want to access.
+     */
+    public void createNewFile(File file) throws JamesException {
         try {
-            if (file.getParentFile() != null && !file.getParentFile().exists()) {
-                file.getParentFile().mkdirs();
-            }
-
             if (!file.exists()) {
                 file.createNewFile();
             }
         } catch (IOException e) {
             throw new JamesException("Could not create file");
         }
-
-        Ui ui = new Ui(this.filePath);
-        ui.writeToFile(tasks);
     }
 }

@@ -33,12 +33,12 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         String monthName = this.deadlineTime.getMonth().name();
-        monthName = monthName.substring(0, 1).toUpperCase() + monthName.substring(1).toLowerCase();
+        String formatMonthName = monthName.substring(0, 1).toUpperCase() + monthName.substring(1).toLowerCase();
 
         int year = this.deadlineTime.getYear();
         int day = this.deadlineTime.getDayOfMonth();
 
-        return String.format("[D]%s (by: %s %s %d)", super.toString(), monthName, day, year);
+        return String.format("[D]%s (by: %s %s %d)", super.toString(), formatMonthName, day, year);
     }
 
     /**
