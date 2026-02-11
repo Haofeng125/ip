@@ -12,89 +12,61 @@ import james.task.Todo;
 
 /**
  * Handles the creation and addition of various task types to the task list.
- * This command can instantiate Todo, Deadline, or Event objects based on
- * the provided task type and descriptions.
  */
 public class CreateTaskCommand extends Command {
-    /** The type of task to create (e.g., "todo", "deadline", "event"). */
-    private String taskType;
-    /** An array containing description parts (e.g., task name, start time, end time). */
-    private String[] descriptions;
-    /** The due date for deadline tasks; null for other task types. */
-    private LocalDate deadlineTime;
 
     /**
-     * Initializes a CreateTaskCommand with the necessary data to build a task.
-     *
-     * @param taskType The category of the task.
-     * @param descriptions The array of strings containing task details.
-     * @param deadlineTime The LocalDate for deadlines, or null if not applicable.
+     * Use Enumerations: Defines supported task categories.
      */
-    public CreateTaskCommand(String taskType, String[] descriptions, LocalDate deadlineTime) {
-        this.taskType = taskType;
+    public enum TaskType {
+        TODO, DEADLINE, EVENT
+    }
+
+    private final TaskType taskType;
+    private final String[] descriptions;
+    private final LocalDate deadlineTime;
+
+    /**
+     * Initializes a CreateTaskCommand.
+     *
+     * @param taskTypeString String to be converted into a TaskType enum.
+     * @param descriptions   Array of details for the task.
+     * @param deadlineTime   Date for deadlines, or null.
+     */
+    public CreateTaskCommand(String taskTypeString, String[] descriptions, LocalDate deadlineTime) {
+        this.taskType = TaskType.valueOf(taskTypeString.toUpperCase());
         this.descriptions = descriptions;
         this.deadlineTime = deadlineTime;
     }
 
-    /**
-     * Returns the type of task this command is responsible for creating.
-     *
-     * @return The task type string.
-     */
-    public String getTaskType() {
-        return taskType;
-    }
-
-    /**
-     * Returns the description parts used to create the task.
-     *
-     * @return An array of description strings.
-     */
-    public String[] getDescriptions() {
-        return descriptions;
-    }
-
-    /**
-     * Returns the deadline time associated with this command.
-     *
-     * @return The LocalDate object, or null.
-     */
-    public LocalDate getDeadlineTime() {
-        return deadlineTime;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return Always false as adding a task does not terminate the program.
-     */
     @Override
     public boolean isExit() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     * Logic to instantiate the specific Task subclass, add it to the list,
-     * and trigger the UI confirmation message.
-     *
-     * @param tasks The TaskList where the new task will be added.
-     * @param ui The UI used to confirm the addition to the user.
-     * @param storage The storage system (not directly used by this command).
-     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task task;
+        Task newTask = createSpecificTask();
 
-        if (taskType.equals("todo")) {
-            task = new Todo(descriptions[0]);
-        } else if (taskType.equals("deadline")) {
-            task = new Deadline(descriptions[0], this.deadlineTime);
-        } else {
-            task = new Event(descriptions[0], descriptions[1], descriptions[2]);
-        }
-
-        tasks.addTask(task);
+        tasks.addTask(newTask);
         ui.addTask(tasks);
+    }
+
+    /**
+     * SLAP: Low-level instantiation logic moved to a helper method.
+     *
+     * @return The specific Task object (Todo, Deadline, or Event).
+     */
+    private Task createSpecificTask() {
+        switch (this.taskType) {
+        case TODO:
+            return new Todo(descriptions[0]);
+        case DEADLINE:
+            return new Deadline(descriptions[0], this.deadlineTime);
+        case EVENT:
+            return new Event(descriptions[0], descriptions[1], descriptions[2]);
+        default:
+            throw new IllegalStateException("Unexpected task type: " + taskType);
+        }
     }
 }

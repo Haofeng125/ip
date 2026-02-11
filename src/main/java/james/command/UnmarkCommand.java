@@ -11,7 +11,7 @@ import james.Ui;
  */
 public class UnmarkCommand extends Command {
     /** The 1-indexed position of the task to be unmarked. */
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Initializes an UnmarkCommand with the specified task index.
