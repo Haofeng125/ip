@@ -63,7 +63,7 @@ public class TaskList {
      * @throws IndexOutOfBoundsException If the taskNumber is invalid.
      */
     public Task getTask(int taskNumber) {
-        int index = taskNumber - 1;
+        int index = getIndex(taskNumber);
         return this.tasks.get(index);
     }
 
@@ -123,7 +123,18 @@ public class TaskList {
      * @throws IndexOutOfBoundsException If the taskNumber is invalid.
      */
     public void removeTask(int taskNumber) {
-        int index = taskNumber - 1;
+        int index = getIndex(taskNumber);
         this.tasks.remove(index);
+    }
+
+    /**
+     * Generate the index of a task in the task list from its task number.
+     *
+     * @param taskNumber The 1-indexed position of the task.
+     * @return The 0-indexed position of the task.
+     */
+    public int getIndex(int taskNumber) {
+        int index = taskNumber - 1;
+        return index;
     }
 }
