@@ -39,6 +39,9 @@ public class Parser {
      *     or the task index is out of bounds.
      */
     public static Command parseCommand(String fullCommand, TaskList tasks) throws JamesException {
+        assert fullCommand != null : "Command string cannot be null";
+        assert tasks != null : "Task list cannot be null";
+
         String[] words = fullCommand.split(" ", 2);
         String command = words[0].toLowerCase();
         String description;
@@ -130,6 +133,9 @@ public class Parser {
      * @return The reconstructed Task object, or null if the task type is unknown.
      */
     public static Task parseLine(String line) {
+        // Assertion: Ensure storage line input is not null
+        assert line != null : "Storage line cannot be null";
+
         String[] parts = line.split(" \\| ");
         String type = parts[0].toUpperCase();
         boolean isDone = parts[1].equals("1");
