@@ -7,11 +7,11 @@ import james.task.Task;
 
 /**
  * Represents a command to remove a task from the task list.
- * This command handles the deletion logic and provides multi-step feedback to the user.
+ * This command handles the deletion logic and provides multistep feedback to the user.
  */
 public class DeleteTaskCommand extends Command {
     /** The 1-indexed position of the task to be deleted. */
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Initializes a DeleteTaskCommand with the specified task index.
@@ -19,6 +19,7 @@ public class DeleteTaskCommand extends Command {
      * @param taskNumber The position of the task in the list (1-indexed).
      */
     public DeleteTaskCommand(int taskNumber) {
+        assert taskNumber >= 0 : "Invalid task number: " + taskNumber;
         this.taskNumber = taskNumber;
     }
 
@@ -43,6 +44,10 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Tasks cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+        assert taskNumber <= tasks.getSize() : "Invalid task number: " + taskNumber;
         Task taskToDelete = tasks.getTask(this.taskNumber);
         tasks.removeTask(this.taskNumber);
         int remainingSize = tasks.getSize();

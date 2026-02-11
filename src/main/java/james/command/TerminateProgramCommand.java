@@ -34,6 +34,9 @@ public class TerminateProgramCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws JamesException {
+        assert tasks != null : "Tasks cannot be null";
+        assert storage != null : "Storage cannot be null";
+        assert ui != null : "Ui cannot be null";
         storage.saveTasks(tasks);
         ui.bye();
     }
