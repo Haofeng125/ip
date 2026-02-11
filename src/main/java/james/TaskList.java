@@ -10,7 +10,7 @@ import james.task.Task;
  */
 public class TaskList {
     /** The internal list used to store Task objects. */
-    protected ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Initializes an empty list of tasks.
@@ -63,6 +63,8 @@ public class TaskList {
      * @throws IndexOutOfBoundsException If the taskNumber is invalid.
      */
     public Task getTask(int taskNumber) {
+        assert this.tasks != null : "Cannot get task from a null list";
+        assert taskNumber > 0 && taskNumber <= this.tasks.size() : "Task index out of bounds";
         int index = getIndex(taskNumber);
         return this.tasks.get(index);
     }
@@ -73,6 +75,7 @@ public class TaskList {
      * @return The size of the task list.
      */
     public int getSize() {
+        assert this.tasks != null : "TaskList cannot be null";
         return this.tasks.size();
     }
 
@@ -91,6 +94,8 @@ public class TaskList {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void markTask(int taskNumber) {
+        assert this.tasks != null : "Cannot get task from a null list";
+        assert taskNumber > 0 && taskNumber <= this.tasks.size() : "Task index out of bounds";
         Task task = getTask(taskNumber);
         task.mark();
     }
@@ -101,6 +106,8 @@ public class TaskList {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void unmarkTask(int taskNumber) {
+        assert this.tasks != null : "Cannot get task from a null list";
+        assert taskNumber > 0 && taskNumber <= this.tasks.size() : "Task index out of bounds";
         Task task = getTask(taskNumber);
         task.unmark();
     }
@@ -112,6 +119,7 @@ public class TaskList {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void printTask(Ui ui, int taskNumber) {
+        assert ui != null : "Ui object cannot be null";
         Task task = getTask(taskNumber);
         ui.printTask(task);
     }
@@ -123,6 +131,8 @@ public class TaskList {
      * @throws IndexOutOfBoundsException If the taskNumber is invalid.
      */
     public void removeTask(int taskNumber) {
+        assert this.tasks != null : "Cannot get task from a null list";
+        assert taskNumber > 0 && taskNumber <= this.tasks.size() : "Task index out of bounds";
         int index = getIndex(taskNumber);
         this.tasks.remove(index);
     }

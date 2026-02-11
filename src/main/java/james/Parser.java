@@ -23,8 +23,9 @@ import james.task.Task;
 import james.task.Todo;
 
 /**
- * Handles the parsing of user input and storage data.
- * Transforms raw strings into executable Command objects or Task objects.
+ * Deals with making sense of the user command and translating it into program actions.
+ * Provides methods to parse raw user input into Command objects and strings from
+ * storage files into Task objects.
  */
 public class Parser {
 
@@ -87,21 +88,6 @@ public class Parser {
             return new FindTaskCommand(arguments);
         default:
             throw new UnknownCommandException(fullCommand);
-        }
-    }
-
-    /**
-     * Converts the raw command string into a CommandType enum.
-     *
-     * @param commandWord The first word of the user input.
-     * @return The corresponding CommandType.
-     * @throws UnknownCommandException If the commandWord does not match any enum constant.
-     */
-    private static CommandType parseCommandType(String commandWord) throws UnknownCommandException {
-        try {
-            return CommandType.valueOf(commandWord.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new UnknownCommandException(commandWord);
         }
     }
 
@@ -255,11 +241,12 @@ public class Parser {
      * Parses a single line from the data storage file into a Task object.
      *
      * @param line The pipe-separated string representing a task in the storage file.
-     * @return The reconstructed Task object, or null if the line is invalid or unknown.
+     * @return The reconstructed Task object, or null if the task type is unknown.
      */
     public static Task parseLine(String line) {
+        // Assertion: Ensure storage line input is not null
+        assert line != null : "Storage line cannot be null";
         String[] parts = line.split(SEP_STORAGE);
-        // [W5.4l] Guard Clause: Ensure line has minimum required parts.
         if (parts.length < 3) {
             return null;
         }
@@ -267,8 +254,6 @@ public class Parser {
         String type = parts[0].toUpperCase();
         boolean isDone = parts[1].equals(STATUS_DONE);
         String description = parts[2];
-
-        // [W5.4k] SLAP: Delegated object creation to specific methods.
         Task task = createTaskFromStorage(type, parts, description);
 
         if (task != null && isDone) {

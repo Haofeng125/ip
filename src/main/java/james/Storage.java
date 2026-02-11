@@ -21,6 +21,7 @@ public class Storage {
      * @param filePath The relative or absolute path where the data file is located.
      */
     public Storage(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "Storage file path cannot be null or empty";
         this.filePath = filePath;
     }
 
@@ -34,6 +35,7 @@ public class Storage {
     public TaskList loadTasks() throws JamesException {
         Ui ui = new Ui(this.filePath);
         ArrayList<String> lines = ui.readFile();
+        assert lines != null : "Read lines from UI should not be null";
         TaskList tasks = addTasksToTaskList(lines);
         return tasks;
     }
@@ -56,6 +58,7 @@ public class Storage {
                 tasks.addTask(task);
             }
         }
+
         return tasks;
     }
 
@@ -67,6 +70,7 @@ public class Storage {
      * @throws JamesException If the file cannot be created or written to.
      */
     public void saveTasks(TaskList tasks) throws JamesException {
+        assert tasks != null : "Cannot save a null task list";
         File file = new File(filePath);
         createNewDirectory(file);
         createNewFile(file);

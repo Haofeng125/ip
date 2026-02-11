@@ -12,6 +12,8 @@ import james.task.Todo;
 
 /**
  * Handles the creation and addition of various task types to the task list.
+ * This command can instantiate Todo, Deadline, or Event objects based on
+ * the provided task type and descriptions.
  */
 public class CreateTaskCommand extends Command {
 
@@ -44,8 +46,21 @@ public class CreateTaskCommand extends Command {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     * Logic to instantiate the specific Task subclass, add it to the list,
+     * and trigger the UI confirmation message.
+     *
+     * @param tasks The TaskList where the new task will be added.
+     * @param ui The UI used to confirm the addition to the user.
+     * @param storage The storage system (not directly used by this command).
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Tasks cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+        assert descriptions != null : "Descriptions cannot be null";
         Task newTask = createSpecificTask();
 
         tasks.addTask(newTask);

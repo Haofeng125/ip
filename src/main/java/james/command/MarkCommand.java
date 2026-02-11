@@ -11,7 +11,7 @@ import james.Ui;
  */
 public class MarkCommand extends Command {
     /** The 1-indexed position of the task to be marked as done. */
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Initializes a MarkCommand with the specified task index.
@@ -19,6 +19,7 @@ public class MarkCommand extends Command {
      * @param taskNumber The position of the task in the list (1-indexed).
      */
     public MarkCommand(int taskNumber) {
+        assert taskNumber >= 0 : "Invalid task number: " + taskNumber;
         this.taskNumber = taskNumber;
     }
 
@@ -43,6 +44,10 @@ public class MarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Tasks cannot be null";
+        assert taskNumber <= tasks.getSize() : "Invalid task number: " + taskNumber;
+        assert storage != null : "Storage cannot be null";
+        assert ui != null : "Ui cannot be null";
         tasks.markTask(this.taskNumber);
         ui.markTask(tasks, this.taskNumber);
     }

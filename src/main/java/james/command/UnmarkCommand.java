@@ -19,6 +19,7 @@ public class UnmarkCommand extends Command {
      * @param taskNumber The position of the task in the list (1-indexed).
      */
     public UnmarkCommand(int taskNumber) {
+        assert taskNumber >= 0 : "Invalid task number: " + taskNumber;
         this.taskNumber = taskNumber;
     }
 
@@ -43,6 +44,10 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Tasks cannot be null";
+        assert taskNumber <= tasks.getSize() : "Invalid task number: " + taskNumber;
+        assert storage != null : "Storage cannot be null";
+        assert ui != null : "Ui cannot be null";
         tasks.unmarkTask(this.taskNumber);
         ui.unmarkTask(tasks, this.taskNumber);
     }

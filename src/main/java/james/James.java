@@ -4,8 +4,9 @@ import james.command.Command;
 import james.exception.JamesException;
 
 /**
- * Represents the main entry point and logic controller for the James chatbot.
- * Coordinates between Storage, TaskList, and Ui to manage user tasks.
+ * Represents the main logic of the James chatbot application.
+ * James is a task management assistant that helps users track todos, deadlines, and events.
+ * It coordinates the User Interface, Storage, and TaskList components.
  */
 public class James {
 

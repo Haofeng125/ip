@@ -37,6 +37,7 @@ public class Ui {
      * @param filePath The path to the file to be read.
      */
     public Ui(String filePath) {
+        assert filePath != null : "Filepath cannot be null.";
         this.filePath = filePath;
     }
 
@@ -44,6 +45,8 @@ public class Ui {
      * Internal helper to route all text to both the GUI buffer and the System console.
      */
     private void appendAndPrint(String message) {
+        assert this.responseBuffer != null : "Cannot append to a null response";
+        assert message != null : "Cannot append to a null message";
         responseBuffer.append(message).append("\n");
         System.out.println("  " + message);
     }
@@ -92,7 +95,7 @@ public class Ui {
     public ArrayList<String> readFile() throws JamesException {
         ArrayList<String> lines = new ArrayList<>();
         try {
-            File file = new File(this.filePath); // Ensure filePath is set!
+            File file = new File(this.filePath);
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNextLine()) {
                 lines.add(fileScanner.nextLine().trim());
@@ -133,6 +136,7 @@ public class Ui {
      * @param je The JamesException containing the error message.
      */
     public void showJamesError(JamesException je) {
+        assert je != null : "Cannot show James error.";
         appendAndPrint(je.getMessage());
     }
 
@@ -142,6 +146,7 @@ public class Ui {
      * @param taskList The TaskList to be displayed.
      */
     public void printList(TaskList taskList) {
+        assert taskList != null : "Cannot print a null list";
         appendAndPrint("Here you go bro! Here's your list.");
         taskList.printTasks(this);
     }
@@ -153,6 +158,8 @@ public class Ui {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void markTask(TaskList tasks, int taskNumber) {
+        assert tasks != null : "Cannot mark a null list";
+        assert taskNumber <= 0 || taskNumber > tasks.getSize() : "Task index out of bounds";
         appendAndPrint("No problem man! I've marked this task as done:");
         tasks.printTask(this, taskNumber);
     }
@@ -164,6 +171,8 @@ public class Ui {
      * @param taskNumber The 1-indexed position of the task.
      */
     public void unmarkTask(TaskList tasks, int taskNumber) {
+        assert tasks != null : "Cannot mark a null list";
+        assert taskNumber <= 0 || taskNumber > tasks.getSize() : "Task index out of bounds";
         appendAndPrint("I got you bro! I've marked this task as not done yet:");
         tasks.printTask(this, taskNumber);
     }
@@ -174,6 +183,7 @@ public class Ui {
      * @param taskList The TaskList after the addition.
      */
     public void addTask(TaskList taskList) {
+        assert taskList != null : "Cannot add a null list";
         appendAndPrint("Say less bro. I've added this task for you:");
         taskList.printTask(this, taskList.getSize());
         appendAndPrint("Now you have " + taskList.getSize() + " tasks in your list!");
@@ -186,7 +196,9 @@ public class Ui {
      * @param remainingSize The size of task list after the deletion.
      */
     public void deleteTask(Task deletedTask, int remainingSize) {
-        appendAndPrint("You bet dawg. I have removed this task for you:");
+        assert deletedTask != null : "Cannot delete a null list";
+        assert remainingSize >= 0 : "Cannot delete a null list";
+        appendAndPrint("You bet man. I have removed this task for you:");
         printTask(deletedTask);
         appendAndPrint("Now you have " + remainingSize + " tasks in your list!");
     }
@@ -197,6 +209,7 @@ public class Ui {
      * @param task The task to be printed.
      */
     public void printTask(Task task) {
+        assert task != null : "Cannot print a null list";
         appendAndPrint("  " + task.toString());
     }
 
@@ -206,6 +219,7 @@ public class Ui {
      * @param tasks The list of Task objects to be printed.
      */
     public void printTasks(ArrayList<Task> tasks) {
+        assert tasks != null : "Cannot print a null list";
         for (int i = 0; i < tasks.size(); i++) {
             appendAndPrint((i + 1) + "." + tasks.get(i).toString());
         }
@@ -218,6 +232,8 @@ public class Ui {
      * @param keyWord The keyWord to search for in tasks.
      */
     public void findTask(ArrayList<Task> tasks, String keyWord) {
+        assert tasks != null : "Task list cannot be null";
+        assert keyWord != null : "Keyword cannot be null";
         appendAndPrint("Bro, here are the matching tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
