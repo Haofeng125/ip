@@ -10,7 +10,7 @@ import james.Ui;
  */
 public class FindTaskCommand extends Command {
     // The key word used in searching
-    private String keyWord;
+    private final String keyWord;
 
     /**
      * Initializes a FindCommand with the specific key word given.
@@ -18,6 +18,7 @@ public class FindTaskCommand extends Command {
      * @param keyWord The specific key word that we need to look up in the task description.
      */
     public FindTaskCommand(String keyWord) {
+        assert keyWord != null : "KeyWord cannot be null";
         this.keyWord = keyWord;
     }
 
@@ -42,6 +43,9 @@ public class FindTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Tasks cannot be null";
+        assert storage != null : "Storage cannot be null";
+        assert ui != null : "Ui cannot be null";
         ui.findTask(tasks.getTasks(), keyWord);
     }
 }

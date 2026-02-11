@@ -16,6 +16,7 @@ public class Task {
      * @param description The description of the task.
      */
     public Task(String description) {
+        assert description != null : "Description cannot be null";
         this.description = description;
         this.isDone = false;
     }
@@ -51,6 +52,7 @@ public class Task {
      */
     @Override
     public String toString() {
+        assert description != null : "Description cannot be null";
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 
@@ -60,6 +62,7 @@ public class Task {
      * @return A pipe-separated string containing completion status and description.
      */
     public String toFileFormat() {
+        assert description != null : "Description cannot be null";
         return String.format("%s | %s", (this.isDone ? "1" : "0"), this.description);
     }
 }

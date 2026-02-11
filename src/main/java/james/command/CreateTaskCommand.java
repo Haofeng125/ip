@@ -84,8 +84,12 @@ public class CreateTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Tasks cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
         Task task;
 
+        assert descriptions != null : "Descriptions cannot be null";
         if (taskType.equals("todo")) {
             task = new Todo(descriptions[0]);
         } else if (taskType.equals("deadline")) {
