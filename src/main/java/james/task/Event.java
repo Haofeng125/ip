@@ -30,6 +30,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
+        assert startTime != null : "Start time cannot be null";
+        assert endTime != null : "End time cannot be null";
         return String.format("[E]%s (from: %s to %s)", super.toString(), this.startTime, this.endTime);
     }
 
@@ -41,6 +43,8 @@ public class Event extends Task {
      */
     @Override
     public String toFileFormat() {
+        assert startTime != null : "Start time cannot be null";
+        assert endTime != null : "End time cannot be null";
         return String.format("E | %s | %s | %s", super.toFileFormat(), this.startTime, this.endTime);
     }
 }
