@@ -1,6 +1,7 @@
 package james.task;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Represents a task with a specific deadline.
@@ -10,6 +11,19 @@ import java.time.LocalDate;
 public class Deadline extends Task {
     /** The date by which the task is due. */
     private LocalDate deadlineTime;
+
+    /**
+     * Initializes a new Deadline task with a description and a due date.
+     *
+     * @param description The textual description of the task.
+     * @param deadlineTime The LocalDate representing the deadline.
+     * @param tags The tags of the deadline item.
+     */
+    public Deadline(String description, ArrayList<String> tags, LocalDate deadlineTime) {
+        super(description, tags);
+        assert deadlineTime != null : "Deadline time cannot be null";
+        this.deadlineTime = deadlineTime;
+    }
 
     /**
      * Initializes a new Deadline task with a description and a due date.
@@ -38,7 +52,8 @@ public class Deadline extends Task {
         int year = this.deadlineTime.getYear();
         int day = this.deadlineTime.getDayOfMonth();
 
-        return String.format("[D]%s (by: %s %s %d)", super.toString(), formatMonthName, day, year);
+        return String.format("[D]%s (by: %s %s %d) %s", super.toString(),
+                formatMonthName, day, year, super.tagsToString());
     }
 
     /**

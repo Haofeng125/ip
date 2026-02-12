@@ -1,5 +1,7 @@
 package james.task;
 
+import java.util.ArrayList;
+
 /**
  * Represents a task that occurs within a specific time frame.
  * An Event includes a start time and an end time in addition to the
@@ -8,6 +10,21 @@ package james.task;
 public class Event extends Task {
     private String startTime;
     private String endTime;
+
+    /**
+     * Initializes a new Event task with a description, start time, and end time.
+     *
+     * @param description The textual description of the event.
+     * @param tags The tags for the event item.
+     * @param startTime The string representation of the start time.
+     * @param endTime The string representation of the end time.
+     */
+    public Event(String description, ArrayList<String> tags,
+                 String startTime, String endTime) {
+        super(description, tags);
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 
     /**
      * Initializes a new Event task with a description, start time, and end time.
@@ -32,7 +49,8 @@ public class Event extends Task {
     public String toString() {
         assert startTime != null : "Start time cannot be null";
         assert endTime != null : "End time cannot be null";
-        return String.format("[E]%s (from: %s to %s)", super.toString(), this.startTime, this.endTime);
+        return String.format("[E]%s (from: %s to %s) %s", super.toString(), this.startTime,
+                this.endTime, super.tagsToString());
     }
 
     /**
