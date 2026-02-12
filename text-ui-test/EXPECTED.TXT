@@ -4,7 +4,7 @@
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [T][ ] read book
+    [T][ ] read book 
   Now you have 1 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
@@ -15,51 +15,65 @@
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [D][ ] return book (by: January 25 2006)
+    [D][ ] return book (by: January 25 2006) 
   Now you have 2 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [E][ ] project meeting (from: Mon 2pm to 4pm)
+    [E][ ] project meeting (from: Mon 2pm to 4pm) 
   Now you have 3 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] read book
-  2.[D][ ] return book (by: January 25 2006)
-  3.[E][ ] project meeting (from: Mon 2pm to 4pm)
+  1.[T][ ] read book 
+  2.[D][ ] return book (by: January 25 2006) 
+  3.[E][ ] project meeting (from: Mon 2pm to 4pm) 
   ____________________________________________________________
   ____________________________________________________________
   No problem man! I've marked this task as done:
-    [T][X] read book
+    [T][X] read book 
   ____________________________________________________________
   ____________________________________________________________
   No problem man! I've marked this task as done:
-    [E][X] project meeting (from: Mon 2pm to 4pm)
+    [E][X] project meeting (from: Mon 2pm to 4pm) 
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][X] read book
-  2.[D][ ] return book (by: January 25 2006)
-  3.[E][X] project meeting (from: Mon 2pm to 4pm)
+  1.[T][X] read book 
+  2.[D][ ] return book (by: January 25 2006) 
+  3.[E][X] project meeting (from: Mon 2pm to 4pm) 
   ____________________________________________________________
   ____________________________________________________________
   I got you bro! I've marked this task as not done yet:
-    [T][ ] read book
+    [T][ ] read book 
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] read book
-  2.[D][ ] return book (by: January 25 2006)
-  3.[E][X] project meeting (from: Mon 2pm to 4pm)
+  1.[T][ ] read book 
+  2.[D][ ] return book (by: January 25 2006) 
+  3.[E][X] project meeting (from: Mon 2pm to 4pm) 
   ____________________________________________________________
   ____________________________________________________________
   Bro, here are the matching tasks in your list:
-    [T][ ] read book
-    [D][ ] return book (by: January 25 2006)
+    [T][ ] read book 
+    [D][ ] return book (by: January 25 2006) 
   ____________________________________________________________
   ____________________________________________________________
   the description of a todo can not be EMPTY, bro!
+  ____________________________________________________________
+  ____________________________________________________________
+  No problem man. I've tagged this task for you:
+    [T][ ] read book #urgent thing!!
+  ____________________________________________________________
+  ____________________________________________________________
+  the description of a tag can not be EMPTY, bro!
+  ____________________________________________________________
+  ____________________________________________________________
+  the description of a tag can not be EMPTY, bro!
+  ____________________________________________________________
+  ____________________________________________________________
+  No problem man. I've tagged this task for you:
+    [T][ ] read book #urgent thing!!#quickly do it!!!
   ____________________________________________________________
   ____________________________________________________________
   Bro, deadlines need a '/by' time! Use: deadline [desc] /by [time]
@@ -90,24 +104,24 @@
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] read book
-  2.[D][ ] return book (by: January 25 2006)
-  3.[E][X] project meeting (from: Mon 2pm to 4pm)
+  1.[T][ ] read book #urgent thing!!#quickly do it!!!
+  2.[D][ ] return book (by: January 25 2006) 
+  3.[E][X] project meeting (from: Mon 2pm to 4pm) 
   ____________________________________________________________
   ____________________________________________________________
   I don't know what 'unknownCommand' means man!
   ____________________________________________________________
   ____________________________________________________________
   Say less bro. I've added this task for you:
-    [T][ ] trimmed task
+    [T][ ] trimmed task 
   Now you have 4 tasks in your list!
   ____________________________________________________________
   ____________________________________________________________
   Here you go bro! Here's your list.
-  1.[T][ ] read book
-  2.[D][ ] return book (by: January 25 2006)
-  3.[E][X] project meeting (from: Mon 2pm to 4pm)
-  4.[T][ ] trimmed task
+  1.[T][ ] read book #urgent thing!!#quickly do it!!!
+  2.[D][ ] return book (by: January 25 2006) 
+  3.[E][X] project meeting (from: Mon 2pm to 4pm) 
+  4.[T][ ] trimmed task 
   ____________________________________________________________
   ____________________________________________________________
   You take care bro. Hope to see you again soon!

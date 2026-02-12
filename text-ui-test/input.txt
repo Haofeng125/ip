@@ -11,6 +11,10 @@ unmark 1
 list
 find book
 todo
+tag 1 urgent thing!!
+tag
+tag 666
+tag 1 quickly do it!!!
 deadline return book
 event project meeting /from Mon 2pm
 event party /to midnight
