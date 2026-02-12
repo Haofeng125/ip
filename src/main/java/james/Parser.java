@@ -3,6 +3,8 @@ package james;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import james.command.Command;
 import james.command.CreateTaskCommand;
@@ -10,6 +12,7 @@ import james.command.DeleteTaskCommand;
 import james.command.FindTaskCommand;
 import james.command.ListCommand;
 import james.command.MarkCommand;
+import james.command.TagTaskCommand;
 import james.command.TerminateProgramCommand;
 import james.command.UnmarkCommand;
 import james.exception.EmptyDescriptionException;
@@ -34,13 +37,14 @@ public class Parser {
      * Represents the specific command types supported by the application.
      */
     private enum CommandType {
-        BYE, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, LIST, FIND
+        BYE, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, LIST, FIND, TAG
     }
 
     private static final String SEP_BY = " /by ";
     private static final String SEP_FROM = " /from ";
     private static final String SEP_TO = " /to ";
     private static final String SEP_STORAGE = " \\| ";
+    private static final String SEP_TAG = " /#";
     private static final String DATE_PATTERN = "yyyy-MM-dd";
 
     private static final String TYPE_TODO = "T";
@@ -86,6 +90,8 @@ public class Parser {
             return new ListCommand();
         case FIND:
             return new FindTaskCommand(arguments);
+        case TAG:
+            return handleTagging(arguments, tasks);
         default:
             throw new UnknownCommandException(fullCommand);
         }
@@ -130,6 +136,30 @@ public class Parser {
         default:
             throw new UnknownCommandException(type.name());
         }
+    }
+
+    /**
+     * Handles commands that tags the task.
+     *
+     * @param arguments The string containing the task index and the tag content.
+     * @return The target TagTaskCommand.
+     * @throws JamesException If the index is missing, invalid, or out of bounds.
+     */
+    private static Command handleTagging(String arguments, TaskList tasks) throws JamesException {
+        final String commandType = "tag";
+        if (arguments.isEmpty()) {
+            throw new EmptyDescriptionException(commandType);
+        }
+        String[] tagParts = arguments.split(" ", 2);
+        if (tagParts.length != 2) {
+            throw new EmptyDescriptionException(commandType);
+        }
+
+        int taskNumber = parseTaskNumber(tagParts[0]);
+        validateTaskNumberInRange(taskNumber, tasks);
+
+        String tag = tagParts[1];
+        return new TagTaskCommand(tag, taskNumber);
     }
 
     /**
@@ -247,19 +277,37 @@ public class Parser {
         // Assertion: Ensure storage line input is not null
         assert line != null : "Storage line cannot be null";
         String[] parts = line.split(SEP_STORAGE);
-        if (parts.length < 3) {
+        if (parts.length < 4) {
             return null;
         }
 
         String type = parts[0].toUpperCase();
-        boolean isDone = parts[1].equals(STATUS_DONE);
-        String description = parts[2];
-        Task task = createTaskFromStorage(type, parts, description);
+        ArrayList<String> tags = loadTags(parts[1]);
+        boolean isDone = parts[2].equals(STATUS_DONE);
+        String description = parts[3];
+        Task task = createTaskFromStorage(type, tags, parts, description);
 
         if (task != null && isDone) {
             task.mark();
         }
         return task;
+    }
+
+    /**
+     * Parse a line of file format String for tags to tags themselves.
+     *
+     * @param tagInfo The file format String for tags.
+     * @return The tags.
+     */
+    public static ArrayList<String> loadTags(String tagInfo) {
+        assert tagInfo != null : "Storage tags cannot be null";
+        String[] parts = tagInfo.split(" /#");
+        if (parts.length < 2) {
+            return new ArrayList<>();
+        }
+        ArrayList<String> tags = new ArrayList<>(Arrays.asList(parts));
+        tags.remove(0);
+        return tags;
     }
 
     /**
@@ -270,14 +318,15 @@ public class Parser {
      * @param description The task description.
      * @return The specific Task object, or null if the type is unknown.
      */
-    private static Task createTaskFromStorage(String type, String[] parts, String description) {
+    private static Task createTaskFromStorage(String type, ArrayList<String> tags,
+                                              String[] parts, String description) {
         switch (type) {
         case TYPE_TODO:
-            return new Todo(description);
+            return new Todo(description, tags);
         case TYPE_DEADLINE:
-            return createDeadlineFromStorage(parts, description);
+            return createDeadlineFromStorage(parts, tags, description);
         case TYPE_EVENT:
-            return createEventFromStorage(parts, description);
+            return createEventFromStorage(parts, tags, description);
         default:
             return null;
         }
@@ -290,9 +339,9 @@ public class Parser {
      * @param description The task description.
      * @return A new Deadline object.
      */
-    private static Task createDeadlineFromStorage(String[] parts, String description) {
+    private static Task createDeadlineFromStorage(String[] parts, ArrayList<String> tags, String description) {
         LocalDate deadline = LocalDate.parse(parts[3], DateTimeFormatter.ofPattern(DATE_PATTERN));
-        return new Deadline(description, deadline);
+        return new Deadline(description, tags, deadline);
     }
 
     /**
@@ -302,7 +351,7 @@ public class Parser {
      * @param description The task description.
      * @return A new Event object.
      */
-    private static Task createEventFromStorage(String[] parts, String description) {
-        return new Event(description, parts[3], parts[4]);
+    private static Task createEventFromStorage(String[] parts, ArrayList<String> tags, String description) {
+        return new Event(description, tags, parts[3], parts[4]);
     }
 }

@@ -45,7 +45,6 @@ public class Ui {
      * Internal helper to route all text to both the GUI buffer and the System console.
      */
     private void appendAndPrint(String message) {
-        assert this.responseBuffer != null : "Cannot append to a null response";
         assert message != null : "Cannot append to a null message";
         responseBuffer.append(message).append("\n");
         System.out.println("  " + message);
@@ -63,9 +62,16 @@ public class Ui {
      */
     public void greet() {
         printDivider();
+        printGreetMessage();
+        printDivider();
+    }
+
+    /**
+     * Append and print the greeting message
+     */
+    public void printGreetMessage() {
         appendAndPrint("Wassup! This is James.");
         appendAndPrint("What can I do for you?");
-        printDivider();
     }
 
     /**
@@ -241,6 +247,18 @@ public class Ui {
                 this.printTask(task);
             }
         }
+    }
+
+    /**
+     * Showing the confirmation message of tagging a task.
+     *
+     * @param tasks The TaskList containing the task.
+     * @param taskNumber The 1-indexed position of the task.
+     */
+    public void tagTask(TaskList tasks, int taskNumber) {
+        assert tasks != null : "Task list cannot be null";
+        appendAndPrint("No problem man. I've tagged this task for you:");
+        printTask(tasks.getTask(taskNumber));
     }
 
     /**
