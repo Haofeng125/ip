@@ -340,7 +340,7 @@ public class Parser {
      * @return A new Deadline object.
      */
     private static Task createDeadlineFromStorage(String[] parts, ArrayList<String> tags, String description) {
-        LocalDate deadline = LocalDate.parse(parts[3], DateTimeFormatter.ofPattern(DATE_PATTERN));
+        LocalDate deadline = LocalDate.parse(parts[4], DateTimeFormatter.ofPattern(DATE_PATTERN));
         return new Deadline(description, tags, deadline);
     }
 
@@ -352,6 +352,6 @@ public class Parser {
      * @return A new Event object.
      */
     private static Task createEventFromStorage(String[] parts, ArrayList<String> tags, String description) {
-        return new Event(description, tags, parts[3], parts[4]);
+        return new Event(description, tags, parts[4], parts[5]);
     }
 }
