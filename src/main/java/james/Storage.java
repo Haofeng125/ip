@@ -41,7 +41,7 @@ public class Storage {
     }
 
     /**
-     * Load Tasks from an array list of strings and save them to task list.
+     * Loads tasks from an array list of strings and saves them to the task list.
      *
      * @param lines The array list of Strings keeping track of the task information from the file.
      * @return A task list containing tasks converted from the String array.
@@ -79,9 +79,9 @@ public class Storage {
     }
 
     /**
-     * Create the file's parent directory if it is missing currently.
+     * Creates the file's parent directory if it is missing currently.
      *
-     * @param file the file we want to access.
+     * @param file The file we want to access.
      */
     public void createNewDirectory(File file) {
         if (file.getParentFile() != null && !file.getParentFile().exists()) {

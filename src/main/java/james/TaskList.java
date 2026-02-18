@@ -138,7 +138,7 @@ public class TaskList {
     }
 
     /**
-     * Generate the index of a task in the task list from its task number.
+     * Generates the index of a task in the task list from its task number.
      *
      * @param taskNumber The 1-indexed position of the task.
      * @return The 0-indexed position of the task.
