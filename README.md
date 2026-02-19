@@ -16,17 +16,11 @@ git clone https://github.com/yourusername/james.git
 ```
 ./gradlew clean shadowJar
 ```
-3. Create data folder and tasks file inside the libs directory.
-```
-cd build/libs
-mkdir data
-touch data/tasks.txt
-```
-4. Execute the JAR file.
+>Or you can also directly download the JAR file here [Download james.jar](https://github.com/Haofeng125/ip/releases/download/v0.2/james.jar)
+3. Execute the JAR file.
 ```
 java -jar james.jar
 ```
-if you didn't create the directory and the file in the last step, you might face some error message saying "cannot find the file". Don't worry, the first run of the program will automatically create the directory and the file for the user, and if you run it again, you will find out that the problem is solved.
 
 ## Operational Semantics
 ### 1. List
