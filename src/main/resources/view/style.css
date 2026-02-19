@@ -1,0 +1,66 @@
+/* Main window background image */
+.anchor-pane {
+    /* The path ../ means "go up one folder level from where this css file is" */
+    -fx-background-image: url("../images/background.png");
+
+    /* Ensures the image stretches to fill the entire window height and width */
+    -fx-background-size: 100% 100%;
+
+    /* Centers the image if it doesn't perfectly match aspect ratio */
+    -fx-background-position: center center;
+
+    /* Prevents the image from tiling like an old Windows 95 desktop */
+    -fx-background-repeat: no-repeat;
+}
+
+/* Make the scroll pane see-through so the background shows */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Chat bubble baseline */
+.chat-bubble {
+    -fx-padding: 12 16 12 16;
+    -fx-background-radius: 18;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Helvetica", "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 4px;
+}
+
+/* User's blue chat bubble */
+.user-bubble {
+    -fx-background-color: #0A84FF;
+}
+
+/* James's dark grey chat bubble */
+.james-bubble {
+    -fx-background-color: #3A3A3C;
+}
+
+/* Input field styling */
+.text-field {
+    -fx-background-color: #2C2C2E;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #8E8E93;
+    -fx-background-radius: 20;
+    -fx-padding: 10 15 10 15;
+    -fx-font-size: 14px;
+}
+
+/* Send button styling */
+.send-button {
+    -fx-background-color: #0A84FF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+}
+.send-button:hover {
+    -fx-background-color: #0070E0;
+}
