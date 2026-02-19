@@ -3,6 +3,7 @@ package james.command;
 import james.Storage;
 import james.TaskList;
 import james.Ui;
+import james.exception.JamesException;
 import james.task.Task;
 
 /**
@@ -41,9 +42,10 @@ public class DeleteTaskCommand extends Command {
      * @param tasks The TaskList from which the task will be removed.
      * @param ui The UI used to display the confirmation messages.
      * @param storage The storage system (not directly used by this command).
+     * @throws JamesException If an error occurs during the file saving process.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws JamesException {
         assert tasks != null : "Tasks cannot be null";
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
@@ -52,5 +54,6 @@ public class DeleteTaskCommand extends Command {
         tasks.removeTask(this.taskNumber);
         int remainingSize = tasks.getSize();
         ui.deleteTask(taskToDelete, remainingSize);
+        storage.saveTasks(tasks);
     }
 }

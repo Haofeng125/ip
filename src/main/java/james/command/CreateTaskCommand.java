@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import james.Storage;
 import james.TaskList;
 import james.Ui;
+import james.exception.JamesException;
 import james.task.Deadline;
 import james.task.Event;
 import james.task.Task;
@@ -54,9 +55,10 @@ public class CreateTaskCommand extends Command {
      * @param tasks The TaskList where the new task will be added.
      * @param ui The UI used to confirm the addition to the user.
      * @param storage The storage system (not directly used by this command).
+     * @throws JamesException If an error occurs during the file saving process.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws JamesException {
         assert tasks != null : "Tasks cannot be null";
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
@@ -65,6 +67,7 @@ public class CreateTaskCommand extends Command {
 
         tasks.addTask(newTask);
         ui.addTask(tasks);
+        storage.saveTasks(tasks);
     }
 
     /**

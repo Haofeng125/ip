@@ -3,6 +3,7 @@ package james.command;
 import james.Storage;
 import james.TaskList;
 import james.Ui;
+import james.exception.JamesException;
 
 /**
  * Represents a command to mark a specific task as completed.
@@ -41,14 +42,16 @@ public class MarkCommand extends Command {
      * @param tasks The TaskList containing the task to be marked.
      * @param ui The UI used to display the completion confirmation.
      * @param storage The storage system (not directly used by this command).
+     * @throws JamesException If an error occurs during the file saving process.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws JamesException {
         assert tasks != null : "Tasks cannot be null";
         assert taskNumber <= tasks.getSize() : "Invalid task number: " + taskNumber;
         assert storage != null : "Storage cannot be null";
         assert ui != null : "Ui cannot be null";
         tasks.markTask(this.taskNumber);
         ui.markTask(tasks, this.taskNumber);
+        storage.saveTasks(tasks);
     }
 }

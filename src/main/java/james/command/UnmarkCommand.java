@@ -3,6 +3,7 @@ package james.command;
 import james.Storage;
 import james.TaskList;
 import james.Ui;
+import james.exception.JamesException;
 
 /**
  * Represents a command to mark a specific task as not completed yet.
@@ -41,14 +42,16 @@ public class UnmarkCommand extends Command {
      * @param tasks The TaskList containing the task to be updated.
      * @param ui The UI used to display the unmarking confirmation.
      * @param storage The storage system (not used by this command).
+     * @throws JamesException If an error occurs during the file saving process.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws JamesException {
         assert tasks != null : "Tasks cannot be null";
         assert taskNumber <= tasks.getSize() : "Invalid task number: " + taskNumber;
         assert storage != null : "Storage cannot be null";
         assert ui != null : "Ui cannot be null";
         tasks.unmarkTask(this.taskNumber);
         ui.unmarkTask(tasks, this.taskNumber);
+        storage.saveTasks(tasks);
     }
 }
