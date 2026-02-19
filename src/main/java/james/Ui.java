@@ -1,7 +1,6 @@
 package james;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -95,6 +94,7 @@ public class Ui {
 
     /**
      * Reads all lines from the current file scanner into a list of strings.
+     * If the file or its parent directories do not exist, they will be created.
      *
      * @return An ArrayList of strings, each representing a line in the file.
      */
@@ -102,13 +102,21 @@ public class Ui {
         ArrayList<String> lines = new ArrayList<>();
         try {
             File file = new File(this.filePath);
+            if (!file.exists()) {
+                if (file.getParentFile() != null) {
+                    file.getParentFile().mkdirs(); // Creates the directory (e.g., "data")
+                }
+                file.createNewFile(); // Creates the file (e.g., "james.txt")
+                return lines; // Return the empty list since the new file has no data yet
+            }
+
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNextLine()) {
                 lines.add(fileScanner.nextLine().trim());
             }
             fileScanner.close();
-        } catch (FileNotFoundException e) {
-            throw new CanNotFindFileException("File missing at: " + filePath);
+        } catch (IOException e) {
+            throw new CanNotFindFileException("Error creating or reading file at: " + filePath);
         }
         return lines;
     }
